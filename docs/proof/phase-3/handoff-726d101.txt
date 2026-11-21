@@ -1,0 +1,10 @@
+﻿AC-P3-07 | Bàn giao kho cá thể từ Gather sang Quan
+Commit: 726d101
+Runtime: Docker python:3.12-slim
+Exit codes: gather=0, quan=0
+File kho: {"items":[{"id":"I1","kind":"ca_linh","fresh":99.99166666666666}]}
+Kho Quan tại tick 0:
+id kind     fresh
+-- ----     -----
+I1 ca_linh 99.992
+Kết quả: đạt. ID và loại khớp, độ tươi hiển thị làm tròn đến 3 chữ số thập phân.

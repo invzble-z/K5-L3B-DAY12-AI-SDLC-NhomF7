@@ -15,6 +15,16 @@ Main hiện dùng contract v1.3. Q3 đã thêm kiểm tra inventory/scenario v�
 | AC-P3-09 | HUD live/mock v1.2 | [`hud-fresh/README.md`](../proof/phase-3/hud-fresh/README.md), [`hud-fresh/run.txt`](../proof/phase-3/hud-fresh/run.txt) | Bằng chứng UI v1.2 cũ vẫn áp dụng; chưa xác nhận HUD khi root manifest là v1.3 |
 | AC-P3-10 | Full repository regression | [`q3-full-regression.txt`](../proof/phase-4/q3-full-regression.txt) | 216 tests, OK, exit 0; Phase 1 verifier 9/9 bước |
 
+
+## Kiểm chứng QA Phase 3 — HoangMinh
+
+Kiểm chứng trên commit `726d101` (contract v1.3), chạy bằng Docker `python:3.12-slim`.
+
+| AC | Cách kiểm chứng | Bằng chứng | Kết quả |
+|---|---|---|---|
+| AC-P3-07 | Chạy Gather xuất file kho, rồi Quan đọc file đó ở tick 0. | [Log bàn giao kho](../proof/phase-3/handoff-726d101.txt) | Đạt. Cả hai tiến trình thoát mã `0`. Kho Quan giữ `I1`, `ca_linh` và hiển thị `fresh=99.992`. |
+| AC-P3-10 | Chạy toàn bộ unittest trên checkout sạch, rồi chạy đối chứng khi tạm cất `inventory.json` mặc định. | [Checkout sạch](../proof/phase-3/regression-726d101-clean.txt) · [Đối chứng](../proof/phase-3/regression-726d101-without-default-inventory.txt) | Chưa đạt trên checkout sạch: 216 test, 6 lỗi, mã thoát `1`. Đối chứng: 216/216 đạt, mã thoát `0`. CLI v1.3 tự nạp file kho mặc định dùng schema đếm cũ. |
+
 ## Giới hạn nghiệm thu
 
 - `unfulfillable` hiện phát `{customer_id, table_id, dish_id}` theo đề xuất, đơn vẫn waiting, reservation rỗng. Cần đóng clarify #16 trước khi gọi schema này là contract đã duyệt.
