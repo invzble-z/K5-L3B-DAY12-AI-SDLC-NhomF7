@@ -13,6 +13,14 @@ Kiểm tra nhánh Quoosc sau khi pull/merge main `dd090f6` vào `0de1da6`. Các 
 | Headless Day 1 và Day 3 | [`day-headless-run.txt`](../proof/phase-4/day-headless-run.txt) | Cả hai exit 0; replay Day 3 deterministic |
 | Regression toàn repo | [`q3-full-regression.txt`](../proof/phase-4/q3-full-regression.txt) | 216 tests, OK, exit 0 |
 
+## Bằng chứng QA trên các mốc Phase 2
+
+| AC | Cách kiểm chứng | Bằng chứng | Kết quả |
+|---|---|---|---|
+| QA: Kho nguyên liệu Phase 2 | Chạy `quan --inventory --ticks 0` với `ca_keo` và `keo_neo` trên `8216a95` | [Log kiểm tra kho](../proof/phase-2/inventory-new-items-8216a95.txt) | Chưa đạt tại `8216a95`. Cả hai trả mã `2` vì bị báo là nguyên liệu lạ. |
+| QA: Xác minh trên tag `phase-2` | Chạy regression, kiểm tra kho ở tick 0 và chạy smoke D1/D3 trên `ba17f4d` | [Log xác minh Phase 2](../proof/phase-2/qa-phase-2-ba17f4d.txt) | Đạt trên tag. 128/128 test, kho nhận mỗi loại `1`, D1/D3 hoàn thành đủ số ngày. |
+| QA: Khởi tạo `earned` từ day scenario | Khai báo `money=200`, `earned=200`, rồi mua oxy và đóng Shop trên `ba17f4d` | [Log kiểm tra earned](../proof/phase-2/earned-initialization-ba17f4d.txt) | Chưa đạt trên tag. `earned=0` ngay từ tick 0, trước giao dịch. Mua oxy và hoàn tất D1 vẫn đạt. |
+
 ## Trạng thái phần việc
 
 - Kỹ thuật T07, T09a và tích hợp manifest Day: hoàn thành theo tests/headless hiện có.

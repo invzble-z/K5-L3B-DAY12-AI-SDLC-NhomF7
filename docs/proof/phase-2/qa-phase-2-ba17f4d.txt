@@ -1,0 +1,7 @@
+﻿Commit: ba17f4ddc925dc899102488dbe594bd2805f5ea1
+Tag: phase-2
+Runtime: Docker python:3.12-slim
+Regression: 128/128 OK (19.113s)
+Quan tick 0: {"ca_keo":1,"keo_neo":1}
+D1: {"type":"end","ticks":22200,"sim_tick":22200,"mode":"day","state":"finished","reason":"days_complete","money":0,"earned":0,"reputation":1.0,"score":100,"days_completed":1}
+D3: {"type":"end","ticks":66600,"sim_tick":66600,"mode":"day","state":"finished","reason":"days_complete","money":0,"earned":0,"reputation":3.0,"score":300,"days_completed":3}

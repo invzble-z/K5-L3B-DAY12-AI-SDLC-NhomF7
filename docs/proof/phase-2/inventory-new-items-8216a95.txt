@@ -1,0 +1,13 @@
+﻿
+
+Commit       : 8216a95
+Item         : ca_keo
+Exit         : 2
+StockAtTick0 :
+Detail       : ─æß║ºu v├áo sai: nguy├¬n liß╗çu lß║í: ca_keo
+
+Commit       : 8216a95
+Item         : keo_neo
+Exit         : 2
+StockAtTick0 :
+Detail       : ─æß║ºu v├áo sai: nguy├¬n liß╗çu lß║í: keo_neo

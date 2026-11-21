@@ -8,8 +8,19 @@
 | AC-P4-04 | 3 cảnh báo có chữ hoặc biểu tượng, chế độ tương phản cao hoạt động | ảnh chụp CDP và unit tests `tests/test_p4_ui_bench_contrast.py` | [`ui-client/`](docs/proof/phase-4/ui-client/) | đạt | nganhduong123, comtrang378-ship-it |
 | AC-P4-05 | Clone sạch chạy bản giao diện trong ≤ 3 lệnh, README đủ thông tin | `clean-clone.txt` | [`clean-clone.txt`](docs/proof/phase-4/clean-clone.txt) | đạt | NguyenQuangDunghe161764 |
 | AC-P4-06 | Regression P1–P3 còn hiệu lực đạt | log test toàn bộ 184+ tests | [`verify-run.txt`](docs/proof/phase-4/verify-run.txt) | đạt (207/207 OK) | WorkOfMinh |
+| AC-P4-06 | Regression P1–P3 trên `d9f018c` | Chạy toàn bộ unittest trong Docker `python:3.12-slim` | [Log HoangMinh](../proof/phase-4/regression-d9f018c-hoangminh.txt) | Đạt, 225/225 test trong 35,413 giây, mã thoát `0` | HoangMinh |
 | AC-P4-07 | CHANGELOG theo phase, release notes, zip, tag `phase-4` và Release v1.0.0 cùng commit | GitHub Release v1.0.0 | [`release-notes-v1.0.0.md`](docs/release-notes-v1.0.0.md) | đạt | invzble-z |
 | AC-P4-08 | Retro rà hành động P2, đủ 7 phản tư cá nhân | `docs/retro.md`, `docs/members/` | [`docs/retro.md`](docs/retro.md) | đạt | nganhduong123, cả nhóm |
+
+## Kiểm chứng QA Phase 4 — HoangMinh
+
+Kiểm chứng trên commit `d9f018c`.
+
+| AC | Cách kiểm chứng | Bằng chứng | Kết quả |
+|---|---|---|---|
+| AC-P4-02 | Chạy benchmark trên Windows với seed `42`, thời lượng `30` giây. | [JSON tái hiện](../proof/phase-4/bench-d9f018c-hoangminh.json) | Chưa đạt. CLI dùng dữ liệu mô phỏng sau khoảng 48 giây chờ. Client gửi `frame_ms`, còn Python đọc `frame_durations`. |
+| AC-P4-03 | Chạy soak hai lần với seed `7`, mỗi lần 10 ngày. | [Lần 1](../proof/phase-4/soak-d9f018c-hoangminh-run1.json) · [Lần 2](../proof/phase-4/soak-d9f018c-hoangminh-run2.json) | Đạt. Cả hai hoàn tất 10/10 ngày, 0 crash, kết quả gameplay trùng khớp. |
+| AC-P4-06 | Chạy toàn bộ unittest trong Docker `python:3.12-slim`. | [Log regression](../proof/phase-4/regression-d9f018c-hoangminh.txt) | Đạt. 225/225 test trong 35,413 giây, mã thoát `0`. |
 
 ## Đánh giá ngắn
 - **Yêu cầu AC-P4-01 (invzble-z phụ trách):**

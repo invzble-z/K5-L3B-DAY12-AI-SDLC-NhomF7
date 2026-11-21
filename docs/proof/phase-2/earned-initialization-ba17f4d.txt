@@ -1,0 +1,44 @@
+﻿Commit: ba17f4ddc925dc899102488dbe594bd2805f5ea1
+Scenario: {
+    "gather":  {
+                   "random_fish":  false,
+                   "time_left_ticks":  1,
+                   "hold":  [
+                                "ca_loc"
+                            ]
+               },
+    "quan":  {
+                 "time_left_ticks":  1
+             },
+    "day":  {
+                "earned":  200,
+                "money":  200
+            }
+}
+
+Inputs: {
+    "frames":  [
+                   {
+                       "shop_done":  true,
+                       "buy":  "oxygen",
+                       "tick":  2
+                   }
+               ]
+}
+
+Expected: earned=200 at tick 0 and after buying oxygen.
+Actual: earned=0 at tick 0 and at the end.
+{"type":"snapshot","tick":0,"sim_tick":0,"mode":"day","phase":"gather","phase_tick":0,"state":"running","time_left_ticks":1,"money":200,"earned":0,"reputation":3.0,"score":300,"day":1,"day_plan":{"dishes":{"ca_loc_nuong_trui":3,"goi_bong_sung":3},"ingredients":{"ca_loc":3,"bong_sung":6}},"upgrades":{},"active_upgrades":{},"menu":{"ca_loc_nuong_trui":{"recipe":{"ca_loc":1},"cook_s":6,"price":60},"goi_bong_sung":{"recipe":{"bong_sung":2},"cook_s":4,"price":40},"lau_ca_linh_dien_dien":{"recipe":{"ca_linh":3,"bong_dien_dien":1},"cook_s":10,"price":120},"canh_chua_ca_loc":{"recipe":{"ca_loc":1,"bong_dien_dien":1},"cook_s":8,"price":90},"ca_keo_nuong":{"recipe":{"ca_keo":2},"cook_s":6,"price":70},"lau_mam":{"recipe":{"ca_linh":2,"ca_keo":1,"keo_neo":1,"bong_dien_dien":1},"cook_s":12,"price":200}},"player":{"pos":[2.0,0.0],"vel":[0.0,0.0],"heading_deg":0.0,"oxygen_ticks":1800,"oxygen_max_ticks":1800,"hp":3,"hp_max":3,"zero_oxy_ticks":0,"invuln_ticks":0,"catch_cd_ticks":0,"at_surface":true},"hold":["ca_loc"],"hold_count":1,"hold_capacity":12,"nodes":[{"id":"N1","pos":[12.0,0.0],"kind":"bong_dien_dien","ready":true,"regrow_ticks":0},{"id":"N2","pos":[28.0,0.0],"kind":"bong_dien_dien","ready":true,"regrow_ticks":0},{"id":"N3","pos":[44.0,0.0],"kind":"bong_sung","ready":true,"regrow_ticks":0},{"id":"N4","pos":[60.0,0.0],"kind":"bong_sung","ready":true,"regrow_ticks":0},{"id":"N5","pos":[76.0,0.0],"kind":"keo_neo","ready":true,"regrow_ticks":0},{"id":"N6","pos":[90.0,0.0],"kind":"keo_neo","ready":true,"regrow_ticks":0}],"fish":[]}
+{"type":"event","tick":1,"phase":"gather","name":"day_start","data":{},"day":1}
+{"type":"event","tick":1,"phase":"gather","name":"day_plan","data":{"dishes":{"ca_loc_nuong_trui":3,"goi_bong_sung":3},"ingredients":{"ca_loc":3,"bong_sung":6}},"day":1}
+{"type":"event","tick":1,"phase":"gather","name":"phase_start","data":{},"day":1}
+{"type":"event","tick":1,"phase":"gather","name":"gather_end","data":{"reason":"time","inventory":{"items":{"ca_loc":1}}},"day":1}
+{"type":"event","tick":1,"phase":"quan","name":"phase_start","data":{},"day":1}
+{"type":"snapshot","tick":1,"sim_tick":1,"mode":"day","phase":"quan","phase_tick":0,"state":"running","time_left_ticks":1,"money":200,"earned":0,"reputation":3.0,"score":300,"day":1,"day_plan":{"dishes":{"ca_loc_nuong_trui":3,"goi_bong_sung":3},"ingredients":{"ca_loc":3,"bong_sung":6}},"upgrades":{},"active_upgrades":{},"menu":{"ca_loc_nuong_trui":{"recipe":{"ca_loc":1},"cook_s":6,"price":60},"goi_bong_sung":{"recipe":{"bong_sung":2},"cook_s":4,"price":40},"lau_ca_linh_dien_dien":{"recipe":{"ca_linh":3,"bong_dien_dien":1},"cook_s":10,"price":120},"canh_chua_ca_loc":{"recipe":{"ca_loc":1,"bong_dien_dien":1},"cook_s":8,"price":90},"ca_keo_nuong":{"recipe":{"ca_keo":2},"cook_s":6,"price":70},"lau_mam":{"recipe":{"ca_linh":2,"ca_keo":1,"keo_neo":1,"bong_dien_dien":1},"cook_s":12,"price":200}},"player":{"pos":[8,5]},"stock":{"ca_linh":15,"ca_loc":3},"hand":null,"stoves":[{"id":"B1","pos":[2,8],"state":"idle","dish":null,"cook_ticks_left":0,"ready_ticks":0},{"id":"B2","pos":[5,8],"state":"idle","dish":null,"cook_ticks_left":0,"ready_ticks":0}],"tables":[{"id":"T1","pos":[9,2],"customer_id":null},{"id":"T2","pos":[13,2],"customer_id":null},{"id":"T3","pos":[9,6],"customer_id":null},{"id":"T4","pos":[13,6],"customer_id":null}],"customers":[]}
+{"type":"event","tick":2,"phase":"quan","name":"quan_end","data":{"reason":"time","money":0,"earned":0,"shift_earned":0,"reputation":3.0},"day":1}
+{"type":"event","tick":2,"phase":"shop","name":"phase_start","data":{},"day":1}
+{"type":"snapshot","tick":2,"sim_tick":2,"mode":"day","phase":"shop","phase_tick":0,"state":"running","time_left_ticks":600,"money":200,"earned":0,"reputation":3.0,"score":300,"day":1,"day_plan":{"dishes":{"ca_loc_nuong_trui":3,"goi_bong_sung":3},"ingredients":{"ca_loc":3,"bong_sung":6}},"upgrades":{},"active_upgrades":{},"menu":{"ca_loc_nuong_trui":{"recipe":{"ca_loc":1},"cook_s":6,"price":60},"goi_bong_sung":{"recipe":{"bong_sung":2},"cook_s":4,"price":40},"lau_ca_linh_dien_dien":{"recipe":{"ca_linh":3,"bong_dien_dien":1},"cook_s":10,"price":120},"canh_chua_ca_loc":{"recipe":{"ca_loc":1,"bong_dien_dien":1},"cook_s":8,"price":90},"ca_keo_nuong":{"recipe":{"ca_keo":2},"cook_s":6,"price":70},"lau_mam":{"recipe":{"ca_linh":2,"ca_keo":1,"keo_neo":1,"bong_dien_dien":1},"cook_s":12,"price":200}},"stock":{"ca_linh":15,"ca_loc":3},"meta":{"max_ticks":600,"upgrades":{"oxygen":[{"level":1,"price":200,"oxygen_max_s":45},{"level":2,"price":400,"oxygen_max_s":60}],"hp":[{"level":1,"price":250,"hp_max":4},{"level":2,"price":500,"hp_max":5}]}}}
+{"type":"event","tick":3,"phase":"shop","name":"bought","data":{"upgrade":"oxygen","level":1,"price":200,"money":0},"day":1}
+{"type":"event","tick":3,"phase":"shop","name":"shop_end","data":{"reason":"done"},"day":1}
+{"type":"snapshot","tick":3,"sim_tick":3,"mode":"day","phase":"shop","phase_tick":1,"state":"finished","time_left_ticks":599,"money":0,"earned":0,"reputation":3.0,"score":300,"day":1,"day_plan":{"dishes":{"ca_loc_nuong_trui":3,"goi_bong_sung":3},"ingredients":{"ca_loc":3,"bong_sung":6}},"upgrades":{"oxygen":1},"active_upgrades":{},"menu":{"ca_loc_nuong_trui":{"recipe":{"ca_loc":1},"cook_s":6,"price":60},"goi_bong_sung":{"recipe":{"bong_sung":2},"cook_s":4,"price":40},"lau_ca_linh_dien_dien":{"recipe":{"ca_linh":3,"bong_dien_dien":1},"cook_s":10,"price":120},"canh_chua_ca_loc":{"recipe":{"ca_loc":1,"bong_dien_dien":1},"cook_s":8,"price":90},"ca_keo_nuong":{"recipe":{"ca_keo":2},"cook_s":6,"price":70},"lau_mam":{"recipe":{"ca_linh":2,"ca_keo":1,"keo_neo":1,"bong_dien_dien":1},"cook_s":12,"price":200}},"stock":{"ca_linh":15,"ca_loc":3},"meta":{"max_ticks":600,"upgrades":{"oxygen":[{"level":1,"price":200,"oxygen_max_s":45},{"level":2,"price":400,"oxygen_max_s":60}],"hp":[{"level":1,"price":250,"hp_max":4},{"level":2,"price":500,"hp_max":5}]}}}
+{"type":"end","ticks":3,"sim_tick":3,"mode":"day","state":"finished","reason":"days_complete","money":0,"earned":0,"reputation":3.0,"score":300,"days_completed":1}
