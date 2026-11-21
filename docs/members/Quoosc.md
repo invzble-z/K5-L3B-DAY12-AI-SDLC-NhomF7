@@ -1,21 +1,6 @@
-# Phạm Trấn Quốc — Quoosc · MSSV 2A202604113
+# Quoosc — Phạm Trấn Quốc · MSSV 2A202604113
 
-## Phase 1
-
-Đóng góp logic Q3 customer, reservation, patience, validation và replay; bổ sung contract/headless coverage. Bằng chứng: [Q3 Phase 1](../proof/phase-1/q3/README.md), [verification mới](../verification/phase-1.md). Các semantics không có ticket gốc vẫn cần PO xác nhận.
-
-## Phase 2
-
-Hoàn tất kỹ thuật DaySim/Runner integration Q3: empty menu plan, reputation qua ca/ngày, active `sim_tick` khi pause, stock handoff và regression `no_dish`. Thêm Q4-F1 orphan-dish reuse regression/fix; chờ ttkien0710 review module. [Verification](../verification/phase-2.md).
-
-## Phase 3
-
-Triển khai freshness bằng Fraction, reservation ID vật lý, spoil/retry và idempotent consume/release. Tích hợp contract root v1.3 qua gather → file inventory → Quan và Day, giữ freshness/ID; full regression 216 tests. `unfulfillable` payload còn chờ PO/Integrator, và UI v1.3 chưa có review mới. [Spec handoff](../../specs/002-p3-q3-freshness/handoff.md).
-
-## Phase 4
-
-Viết CLI soak dựa trên DaySim thật. Hai lần chạy seed 7 đạt 10/10 ngày, 0 crash và gameplay fields trùng. Bot fast-dock không thu hoạch nên earned=0 trong proof; không xem đó là đánh giá economy/strategy. [Proof](../proof/phase-4/soak-run.txt).
-
-## Handoff
-
-Full test, headless Day 1/3 và soak evidence hiện có; xem [Phase 1–4 verification](../verification/). QA/Integrator review, Q4 owner review, schema `unfulfillable`, UI v1.3, release và phần tự phản tư cá nhân vẫn cần người phụ trách xác nhận.
+- **Tôi đã làm (kèm link commit):** Tôi phát triển khách, lịch đến, giữ nguyên liệu và kiên nhẫn ở Phase 1; lọc món, `no_dish` và tích hợp DaySim ở Phase 2. Phase 3, tôi xử lý độ tươi và giữ nguyên liệu theo ID; Phase 4, tôi xây dựng soak 10 ngày và kiểm replay. [Q3](https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7/commit/4a89104), [Soak](https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7/commit/4b38c16), [tích hợp](https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7/commit/afb60c0).
+- **Tôi đã review (kèm link):** Tôi kiểm tra giao diện khách–bếp, phát hiện Q4-F1 khi khách rời lúc món đang nấu; sau đó bổ sung test tái sử dụng món, giải phóng reservation và tránh thanh toán lặp. [Finding](../proof/phase-1/q3/q4-review.md), [test](../../tests/test_p2_q4_f1_reuse.py).
+- **AI sai ở đâu và tôi phát hiện thế nào:** AI kiểm `paid.amount` trong khi event trả `price` và `tip`. Tôi đọc `_tick_customers()`, sửa assertion và chạy lại test.
+- **Điều tôi học được:** Tôi cần đối chiếu giả định với code và contract, rồi kiểm hành vi qua tích hợp thật. PR được merge chưa đồng nghĩa với QA phê duyệt. [Báo cáo chi tiết](../reports/Quoosc-Phase1-4-Detailed-Report.md).
