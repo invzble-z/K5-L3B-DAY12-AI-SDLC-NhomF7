@@ -1,0 +1,8 @@
+{
+  "tables": [{"id":"T4","pos":[13,6]}, {"id":"T2","pos":[13,2]}, {"id":"T1","pos":[9,2]}, {"id":"T3","pos":[9,6]}],
+  "extra_menu": {
+    "fixture_a": {"recipe":{"ca_loc":1,"bong_sung":1},"cook_s":1,"price":1},
+    "fixture_b": {"recipe":{"ca_linh":1},"cook_s":1,"price":1},
+    "fixture_c": {"recipe":{"bong_dien_dien":1},"cook_s":1,"price":1}
+  }
+}

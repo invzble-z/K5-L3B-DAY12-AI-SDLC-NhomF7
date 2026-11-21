@@ -1,0 +1,378 @@
+{
+ "_ghi_chu": "Snapshot GIẢ theo Test Contract v1.1 (Ticket-02) để vẽ UI khi sim chưa xong. Trường của khách và data sự kiện ngoài bảng §4.4 là giả định; sửa theo docs/contracts/.",
+ "day": 1,
+ "day_plan": {
+  "dishes": {
+   "ca_loc_nuong_trui": 3,
+   "goi_bong_sung": 3
+  },
+  "ingredients": {
+   "ca_loc": 3,
+   "bong_sung": 6
+  }
+ },
+ "upgrades": {},
+ "active_upgrades": {},
+ "menu": {
+  "ca_loc_nuong_trui": {
+   "recipe": {
+    "ca_loc": 1
+   },
+   "cook_s": 6,
+   "price": 60
+  },
+  "goi_bong_sung": {
+   "recipe": {
+    "bong_sung": 2
+   },
+   "cook_s": 4,
+   "price": 40
+  },
+  "lau_ca_linh_dien_dien": {
+   "recipe": {
+    "ca_linh": 3,
+    "bong_dien_dien": 1
+   },
+   "cook_s": 10,
+   "price": 120
+  },
+  "canh_chua_ca_loc": {
+   "recipe": {
+    "ca_loc": 1,
+    "bong_dien_dien": 1
+   },
+   "cook_s": 8,
+   "price": 90
+  },
+  "ca_keo_nuong": {
+   "recipe": {
+    "ca_keo": 2
+   },
+   "cook_s": 6,
+   "price": 70
+  },
+  "lau_mam": {
+   "recipe": {
+    "ca_linh": 2,
+    "ca_keo": 1,
+    "keo_neo": 1,
+    "bong_dien_dien": 1
+   },
+   "cook_s": 12,
+   "price": 200
+  }
+ },
+ "type": "snapshot",
+ "tick": 2600,
+ "sim_tick": 2600,
+ "mode": "day",
+ "phase": "gather",
+ "phase_tick": 2600,
+ "state": "running",
+ "time_left_ticks": 1500,
+ "money": 0,
+ "earned": 0,
+ "reputation": 3.0,
+ "score": 300,
+ "player": {
+  "pos": [
+   56.0,
+   17.0
+  ],
+  "vel": [
+   4.0,
+   0.0
+  ],
+  "heading_deg": 0,
+  "oxygen_ticks": 300,
+  "oxygen_max_ticks": 1800,
+  "hp": 2,
+  "hp_max": 3,
+  "zero_oxy_ticks": 0,
+  "invuln_ticks": 0,
+  "catch_cd_ticks": 0,
+  "at_surface": false
+ },
+ "hold": [
+  {
+   "id": "I1",
+   "kind": "ca_loc",
+   "fresh": 100
+  },
+  {
+   "id": "I2",
+   "kind": "bong_sung",
+   "fresh": 97.5
+  },
+  {
+   "id": "I3",
+   "kind": "bong_sung",
+   "fresh": 88.25
+  },
+  {
+   "id": "I4",
+   "kind": "ca_linh",
+   "fresh": 64
+  },
+  {
+   "id": "I5",
+   "kind": "ca_linh",
+   "fresh": 41.5
+  },
+  {
+   "id": "I6",
+   "kind": "ca_keo",
+   "fresh": 31.2
+  },
+  {
+   "id": "I7",
+   "kind": "keo_neo",
+   "fresh": 29.9
+  },
+  {
+   "id": "I8",
+   "kind": "ca_loc",
+   "fresh": 12
+  }
+ ],
+ "hold_count": 8,
+ "hold_capacity": 12,
+ "nodes": [
+  {
+   "id": "N1",
+   "pos": [
+    12,
+    0
+   ],
+   "kind": "bong_dien_dien",
+   "ready": true,
+   "regrow_ticks": 0
+  },
+  {
+   "id": "N2",
+   "pos": [
+    28,
+    0
+   ],
+   "kind": "bong_dien_dien",
+   "ready": true,
+   "regrow_ticks": 0
+  },
+  {
+   "id": "N3",
+   "pos": [
+    44,
+    0
+   ],
+   "kind": "bong_sung",
+   "ready": false,
+   "regrow_ticks": 700
+  },
+  {
+   "id": "N4",
+   "pos": [
+    60,
+    0
+   ],
+   "kind": "bong_sung",
+   "ready": true,
+   "regrow_ticks": 0
+  },
+  {
+   "id": "N5",
+   "pos": [
+    76,
+    0
+   ],
+   "kind": "keo_neo",
+   "ready": true,
+   "regrow_ticks": 0
+  },
+  {
+   "id": "N6",
+   "pos": [
+    90,
+    0
+   ],
+   "kind": "keo_neo",
+   "ready": true,
+   "regrow_ticks": 0
+  }
+ ],
+ "fish": [
+  {
+   "id": "F1",
+   "pos": [
+    30,
+    10
+   ],
+   "kind": "ca_loc",
+   "heading_deg": 0
+  },
+  {
+   "id": "F3",
+   "pos": [
+    47,
+    6
+   ],
+   "kind": "ca_linh",
+   "heading_deg": 180
+  },
+  {
+   "id": "F5",
+   "pos": [
+    58,
+    24
+   ],
+   "kind": "ca_keo",
+   "heading_deg": 0
+  },
+  {
+   "id": "F7",
+   "pos": [
+    75,
+    16
+   ],
+   "kind": "ca_loc",
+   "heading_deg": 180
+  },
+  {
+   "id": "F9",
+   "pos": [
+    90,
+    27
+   ],
+   "kind": "ca_keo",
+   "heading_deg": 0
+  }
+ ],
+ "monsters": [
+  {
+   "id": "M1",
+   "kind": "ca_sau",
+   "pos": [
+    61.5,
+    22.0
+   ],
+   "waypoints": [
+    [
+     60,
+     24
+    ],
+    [
+     64,
+     24
+    ]
+   ],
+   "target_idx": 1,
+   "state": "chase",
+   "state_ticks_left": 0
+  }
+ ],
+ "meta": {
+  "bounds": {
+   "x": [
+    0,
+    100
+   ],
+   "d": [
+    0,
+    30
+   ]
+  },
+  "dock_pos": [
+   2,
+   0
+  ],
+  "dock_radius": 3,
+  "surface_depth": 0.5,
+  "interact_radius": 2.0,
+  "catch_radius": 2.0,
+  "monsters": {
+   "species": {
+    "ca_sau": {
+     "detect_radius": 10,
+     "exit_radius": 16,
+     "depths": [
+      10,
+      30
+     ]
+    }
+   }
+  }
+ },
+ "events": [
+  {
+   "type": "event",
+   "tick": 0,
+   "phase": "gather",
+   "name": "day_start",
+   "data": {},
+   "day": 1
+  },
+  {
+   "type": "event",
+   "tick": 0,
+   "phase": "gather",
+   "name": "day_plan",
+   "data": {
+    "dishes": {
+     "ca_loc_nuong_trui": 3,
+     "goi_bong_sung": 3
+    },
+    "ingredients": {
+     "ca_loc": 3,
+     "bong_sung": 6
+    }
+   },
+   "day": 1
+  },
+  {
+   "type": "event",
+   "tick": 0,
+   "phase": "gather",
+   "name": "phase_start",
+   "data": {},
+   "day": 1
+  },
+  {
+   "type": "event",
+   "tick": 2400,
+   "phase": "gather",
+   "name": "monster_hit",
+   "data": {
+    "monster_id": "M1",
+    "hp": 2,
+    "lost": [
+     "bong_sung"
+    ],
+    "pos": [
+     55,
+     18
+    ]
+   },
+   "day": 1
+  },
+  {
+   "type": "event",
+   "tick": 2600,
+   "phase": "gather",
+   "day": 1,
+   "name": "spoiled",
+   "data": {
+    "item_id": "I8",
+    "kind": "ca_loc",
+    "location": "hold"
+   }
+  }
+ ],
+ "finished": false,
+ "reason": null,
+ "error": null,
+ "freshness": {
+  "initial": 100,
+  "gather_decay_per_s": 0.5,
+  "quan_decay_per_s": 0.25,
+  "spoiled_below": 30
+ }
+}

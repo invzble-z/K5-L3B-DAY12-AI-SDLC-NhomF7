@@ -1,6 +1,6 @@
 {
   "quan": {
-    "stock": {"ca_loc": 1},
+    "stock": [{"id": "I1", "kind": "ca_loc", "fresh": 100}],
     "customers": [
       {
         "id": "C2",
@@ -8,7 +8,7 @@
         "dish_id": "ca_loc_nuong_trui",
         "state": "waiting",
         "patience_ticks_left": 120,
-        "reserved": {"ca_loc": 1}
+        "reserved": ["I1"]
       }
     ]
   }

@@ -1,11 +1,13 @@
 # invzble-z — phản tư cá nhân (≤ 200 từ)
 
 - Tôi đã làm (kèm link commit):
-  - Giữ vai trò Integrator: rà soát quy trình nhóm, cấu hình `game.contract.json`, hợp nhất các PR của các thành viên.
-  - Cập nhật Test Contract v1.1 cho Phase 2 (`game.contract.json`, `chonoi/contract.py`): 6 món ăn, 2 bếp, 4 bàn, bổ sung `keo_neo`, cấu hình quái vật Cá Sấu, kế hoạch `day_plan` và hệ thống nâng cấp Shop.
-- Tôi đã review (kèm link):
-  - Review và merge PR #3 (`p1/quan-lat4` của Kiên), PR #4 (`HoangMinh` của Minh), nhánh `origin/NguyenQuangDung` của Dũng và nhánh `origin/Quoosc` của Quốc.
+  - Vai trò Integrator / Release Lead: quản lý `game.contract.json`, điều phối merge PR.
+  - Phase 2: Cập nhật Contract v1.1, lập trình Lát 4a (`sim/day.py`, chế độ `--mode day`, đổi pha Gather->Quán->Shop, bàn giao kho, pause/resume), gắn tag `phase-2`.
+  - Phase 3: AC-P3-01 & AC-P3-08 (`Item`, adapter 2 schema kho, khối `freshness`, bàn giao cá thể và `IdAllocator` xuyên Ngày trong `day.py`, `tests/test_p3_inventory.py`).
+  - Phase 4: AC-P4-01 (Contract v1.3, khai `bench_cmd`, `soak_cmd`, `tests/test_p4_contract.py`), điều phối release.
+- Tôi đã review:
+  - Review và merge PR #3, PR #4, PR #12, PR #13, PR #14, PR #15 và nhánh của các thành viên.
 - AI sai ở đâu và tôi phát hiện thế nào:
-  - Khi cập nhật `game.contract.json` thêm loại cây `keo_neo`, ban đầu hàm `_validate_gather` trong `chonoi/contract.py` chỉ cho phép `bong_dien_dien` và `bong_sung` nên sẽ báo lỗi `BadInput`. Tôi phát hiện qua việc đối chiếu logic kiểm tra hợp đồng trước khi lưu file cấu hình.
+  - Khi viết `DaySim`, AI import `from .sim.gather` gây lỗi `ModuleNotFoundError`; khi làm v1.3 adapter, AI định áp dụng cứng kho cá thể làm gãy test v1.1 cũ. Phát hiện nhờ chạy `unittest discover` và sửa điều kiện linh hoạt.
 - Điều tôi học được:
-  - Tầm quan trọng của việc chốt Test Contract và giao diện chuyển pha từ sớm để các nhánh làm việc song song không bị xung đột; cơ chế lock contract giúp kiểm soát độ ổn định của toàn hệ thống.
+  - Lock contract và adapter tương thích ngược là chìa khóa để 7 người phát triển song song mà không vỡ nhánh chính.

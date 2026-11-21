@@ -1,0 +1,31 @@
+Headless Day smoke and deterministic replay
+Verified branch HEAD: 5b79199 (origin/main ba17f4d merged); integration tests: 84f9546, 053867b
+Branch: p2/q3-day-integration
+Runtime: Python 3.11.9, Windows
+
+Harness: tests.helpers.run_headless invokes the repository's game.contract.json headless_cmd
+(python3 -m chonoi.headless), substituting the active Python executable on Windows.
+All outputs used temporary scenario/input/output files; no inventory v1.2 fixture was used.
+
+Day 1 command arguments:
+  python -m chonoi.headless --mode day --days 1 --seed 17 --ticks 20 --snapshot-every 1
+    --scenario <temp scenario.json> --inputs <temp inputs.json> --out <temp day.jsonl>
+Scenario: Gather time_left_ticks=1; Quan time_left_ticks=1 and random_customers=false;
+input raises shop_done on input tick 2. Exit 0; end reason=days_complete; days_completed=1.
+Event order:
+  tick 1: day_start, day_plan, phase_start(gather), gather_end, phase_start(quan)
+  tick 2: quan_end, phase_start(shop)
+  tick 3: shop_end
+SHA-256: 7ab9ed3f458e063f21694728c887ad542699f30feec02081db15878db2885650
+
+Day 3 command arguments:
+  python -m chonoi.headless --mode day --days 3 --seed 17 --ticks 20 --snapshot-every 1
+    --scenario <temp scenario.json> --inputs <temp inputs.json> --out <temp day.jsonl>
+Input pulses shop_done on ticks 2, 5, 8, with a false frame between presses.
+Exit 0; end reason=days_complete; days_completed=3. day_start occurred for days 1, 2, 3.
+SHA-256 replay A and B (same seed/scenario/inputs):
+  ce86c697796c8e341039a0e2249dca821dfb025f8dfcbfd11adf919751cc919c
+Replay result: byte-identical.
+
+These are loop/event smoke scenarios with one tick per gameplay phase; they prove phase wiring,
+day count, event order, and deterministic replay, not full-length customer throughput or Shop UX.

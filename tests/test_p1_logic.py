@@ -36,7 +36,7 @@ class GatherLogic(unittest.TestCase):
         names = [name for name, _ in events]
         self.assertIn("gather", names)
         self.assertIn("hold_full", names)
-        self.assertEqual(sim.hold[-1], "bong_sung")
+        self.assertEqual(sim.hold[-1].kind, "bong_sung")
         self.assertEqual(len(sim.hold), 12)
 
 

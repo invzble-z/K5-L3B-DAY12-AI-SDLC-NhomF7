@@ -1,0 +1,30 @@
+Q3 ↔ DaySim integration tests
+Verified branch HEAD: 5b79199 (origin/main ba17f4d merged); integration tests: 84f9546, 053867b
+Branch: p2/q3-day-integration
+Runtime: Python 3.11.9, Windows
+
+Command:
+  python -m unittest tests.test_p2_q3_day_integration -v
+Result: exit 0; Ran 15 tests; OK (expected failures=5).
+
+Passing behavior assertions (10):
+- Gather inventory handed to Quan once; physical stock remains unchanged by reservation;
+  snapshot stock excludes reserved ingredients.
+- Gather → DaySim → Quan cooking consumes the recipe once; second consume is rejected.
+- A waiting customer leaving releases its unused reservation once and frees the table.
+- Day plan payload and menu filter preserve the supplied dishes and do not mutate tuning.
+- Manifest mapping plans D1–D5 and a list-shaped plan are read without mutation.
+- The next Day starts with a fresh QuanSim, arrival clock, customers and table occupancy.
+- Real manifest tuning produced arrivals at elapsed ticks 120 and 1020 (`120 + 900k`), with tables T1 then T2 and unique customer IDs.
+- One payment updates cumulative money and earned once (60 base + 12 tip; starting money 10 → 82).
+- Headless one-day run ends with days_completed=1 and the expected phase events.
+- Headless three-day run ends with days_completed=3 and replays byte-identically.
+
+Expected failures (5; known owner boundary, not counted as acceptance):
+- Empty plan is passed as None rather than an empty filter (two tests: filter value and observed arrival).
+- Day-level reputation is not passed into the first QuanSim.
+- Reputation earned during one day is not passed into the next QuanSim.
+- Session snapshot sim_tick advances while DaySim is paused.
+
+No DaySim/Runner implementation was changed in these test commits. DaySim/Runner findings are assigned to
+their owner, invzble-z; details and observed values are in day-findings.md.

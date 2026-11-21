@@ -10,7 +10,7 @@
   const newStats = () => ({ served: 0, left: 0, money: 0, tips: 0 });
 
   const S = (CN.screens = {
-    mode: CN.state.mock ? "play" : "menu",   // menu | play | exit
+    mode: CN.state.mock || CN.bench.on ? "play" : "menu",   // menu | play | exit (bench: vào thẳng cảnh)
     menuIdx: 0,
     card: null,                               // {kind: day|evening|result, data, since}
     pausedByCard: false,
@@ -47,13 +47,13 @@
     },
 
     update(snap, fresh) {
-      if (S.mode !== "play") return;
+      if (S.mode !== "play" || CN.bench.on) return;   // bench: không intro/thẻ (thẻ gửi pause, làm mờ cảnh)
       for (const e of fresh) handle(e, snap);
       // P1 chạy riêng từng buổi chưa phát phase_start: hiện intro một lần ngay sau khi bấm Chơi / R.
       if (S.pendingStart && (CN.events.restarted || (snap.tick || 0) < 30)) {
         S.pendingStart = false;
         if (snap.day === undefined && !S.card) {
-          if ((snap.phase || snap.mode) === "quan") showCard("evening", { stock: { ...(snap.stock || {}) }, menu: snap.menu });
+          if ((snap.phase || snap.mode) === "quan") showCard("evening", { stock: CN.inv.counts(snap.stock), menu: snap.menu });
           else showCard("day", { plan: snap.day_plan });
         }
       }
@@ -91,7 +91,7 @@
         if (ph === "gather") showCard("day", { day: e.day ?? snap.day, plan: snap.day_plan });
         else if (ph === "quan") {
           S.repAtQuan = snap.reputation;
-          showCard("evening", { day: e.day ?? snap.day, stock: { ...(snap.stock || {}) }, plan: snap.day_plan, menu: snap.menu });
+          showCard("evening", { day: e.day ?? snap.day, stock: CN.inv.counts(snap.stock), plan: snap.day_plan, menu: snap.menu });
         }
         break;
       }
@@ -116,14 +116,14 @@
     const g = ctx.createLinearGradient(0, 0, 0, h);
     g.addColorStop(0, "#f6d7a7"); g.addColorStop(0.45, "#5aa9b8"); g.addColorStop(1, "#0b2a44");
     ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
-    text("Quán Ăn Chợ Nổi", w / 2, h * 0.3, { size: 52, align: "center", weight: "800", color: "#3a2412" });
-    text("Một ngày của Út Sen trên sông Rạch Sen", w / 2, h * 0.3 + 44, { size: 22, align: "center", color: "#4a3018" });
+    text("Quán Ăn Chợ Nổi", w / 2, h * 0.3, { size: 52, align: "center", weight: "800", color: "#3a2412", noOutline: true });
+    text("Một ngày của Út Sen trên sông Rạch Sen", w / 2, h * 0.3 + 44, { size: 22, align: "center", color: "#4a3018", noOutline: true });
     ["Chơi", "Thoát"].forEach((label, i) => {
       const y = h * 0.55 + i * 64, sel = S.menuIdx === i;
       ui.panel(w / 2 - 120, y - 26, 240, 52, { fill: sel ? "rgba(242,194,48,.92)" : "rgba(12,20,28,.7)", r: 12 });
-      text(label, w / 2, y + 1, { size: 24, align: "center", base: "middle", weight: "800", color: sel ? "#2a1a0a" : COLOR.text });
+      text(label, w / 2, y + 1, { size: 24, align: "center", base: "middle", weight: "800", color: sel ? "#2a1a0a" : COLOR.text, noOutline: sel });
     });
-    text("↑/↓ chọn · Enter xác nhận", w / 2, h - 40, { size: 18, align: "center", color: "#dfe9ee" });
+    text("↑/↓ chọn · Enter xác nhận · H tương phản cao: " + (CN.contrast.on ? "Bật" : "Tắt"), w / 2, h - 40, { size: 18, align: "center", color: CN.contrast.on ? "#fff" : "#dfe9ee" });
   }
 
   function drawExit(w, h) {
@@ -199,20 +199,22 @@
 
   function drawPause(w, h) {
     dim(w, h, 0.7);
-    const cw = 400, ch = 230;
+    const cw = 440, ch = 280;
     const [x, y] = card(w, h, cw, ch);
     text("Tạm dừng", x + cw / 2, y + 54, { size: 32, align: "center", weight: "800" });
     let kw = ui.key(x + 70, y + 112, "Esc/P");
     text("Tiếp tục", x + 82 + kw, y + 113, { size: 20, base: "middle" });
     kw = ui.key(x + 70, y + 162, "M");
     text("Về menu", x + 82 + kw, y + 163, { size: 20, base: "middle" });
+    kw = ui.key(x + 70, y + 212, "H");
+    text("Tương phản cao: " + (CN.contrast.on ? "Bật" : "Tắt"), x + 82 + kw, y + 213, { size: 20, base: "middle" });
   }
 
   function drawSummary(w, h, snap) {
     dim(w, h, 0.75);
     const best = Object.entries(S.dishesSold).sort((a, b) => b[1] - a[1])[0];
     const rows = [
-      ["Số Ngày", snap.days_completed ?? snap.day ?? "?"], ["Tổng tiền", (snap.earned ?? 0) + "k"], ["Tiền còn", (snap.money ?? 0) + "k"],
+      ["Số Ngày", (snap.days_completed ?? snap.day ?? "?") + (snap.max_days ? "/" + snap.max_days : "")], ["Tổng tiền", (snap.earned ?? 0) + "k"], ["Tiền còn", (snap.money ?? 0) + "k"],
       ["Tổng điểm", snap.score ?? 0], ["Uy tín", (snap.reputation ?? 0).toFixed(1)], ["Món bán chạy", best ? dname(best[0]) + " × " + best[1] : "—"],
     ];
     const cw = 560, ch = 140 + rows.length * 42;

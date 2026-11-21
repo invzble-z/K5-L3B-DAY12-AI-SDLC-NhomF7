@@ -1,0 +1,20 @@
+Base d2daf42 with uncommitted tests; command: ['C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\python.exe', '-m', 'unittest', 'tests.test_p2_q3', 'tests.test_p2_quoc', '-v']
+test_each_new_shift_restarts_arrival_clock_and_copies_inventory (tests.test_p2_q3.CustomersPhase2.test_each_new_shift_restarts_arrival_clock_and_copies_inventory) ... ok
+test_full_tables_no_duplicates_and_no_queue (tests.test_p2_q3.CustomersPhase2.test_full_tables_no_duplicates_and_no_queue) ... ok
+test_payment_and_departure_release_tables (tests.test_p2_q3.CustomersPhase2.test_payment_and_departure_release_tables) ... ok
+test_plan_filters_before_recipe_and_rng (tests.test_p2_q3.CustomersPhase2.test_plan_filters_before_recipe_and_rng) ... ok
+test_q4_f1_orphan_dish_reproduced (tests.test_p2_q3.CustomersPhase2.test_q4_f1_orphan_dish_reproduced) ... ok
+test_random_disabled_and_order_tick_snapshot (tests.test_p2_q3.CustomersPhase2.test_random_disabled_and_order_tick_snapshot) ... ok
+test_seed_replay_and_no_filter (tests.test_p2_q3.CustomersPhase2.test_seed_replay_and_no_filter) ... ok
+test_six_dishes_independent_and_full_recipe (tests.test_p2_q3.CustomersPhase2.test_six_dishes_independent_and_full_recipe) ... ok
+test_two_distinct_orders_consumed_once (tests.test_p2_q3.CustomersPhase2.test_two_distinct_orders_consumed_once) ... ok
+test_two_stoves_do_not_consume_same_order (tests.test_p2_q3.CustomersPhase2.test_two_stoves_do_not_consume_same_order) ... ok
+test_empty_plan_and_invalid_dish (tests.test_p2_quoc.Phase2Customers.test_empty_plan_and_invalid_dish) ... ok
+test_schedule_four_tables_and_plan_filter (tests.test_p2_quoc.Phase2Customers.test_schedule_four_tables_and_plan_filter) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.076s
+
+OK
+
+exit: 0

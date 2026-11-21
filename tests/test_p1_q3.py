@@ -56,7 +56,7 @@ class Q3HydrationTests(unittest.TestCase):
         self.assertEqual(snapshot["customers"][0]["id"], "C2")
         self.assertEqual(snapshot["customers"][0]["dish_id"], "ca_loc_nuong_trui")
         self.assertEqual(snapshot["customers"][0]["patience_ticks_left"], 2)
-        self.assertEqual(snapshot["customers"][0]["reserved"], {"ca_loc": 1})
+        self.assertEqual(snapshot["customers"][0]["reserved"], ["I1"])
         self.assertEqual(snapshot["tables"][0]["customer_id"], "C2")
         self.assertNotIn("ca_loc", session.sim._available_stock())
 
@@ -141,7 +141,7 @@ class Q3HydrationTests(unittest.TestCase):
             os.path.join(FIXTURES, "reserved-before-cook.json"), "quan", contract["tuning"]
         )
         waiting = Session("quan", contract["tuning"], waiting_scenario, seed=6).sim
-        self.assertEqual(waiting.customers[0]["reserved"], {"ca_loc": 1})
+        self.assertEqual(waiting.customers[0]["reserved"], ["I1"])
         self.assertEqual(waiting._reservation_state["C2"], "reserved")
         self.assertNotIn("ca_loc", waiting._available_stock())
 
@@ -185,9 +185,8 @@ class Q3HydrationTests(unittest.TestCase):
         """A valid but incomplete reservation fails during hydration before JSONL creation."""
         scenario_path = os.path.join(FIXTURES, "invalid-partial-recipe.json")
         contract = _contract()
-        scenario = load_scenario(scenario_path, "quan", contract["tuning"])
         with self.assertRaises(BadInput):
-            Session("quan", contract["tuning"], scenario, seed=1)
+            load_scenario(scenario_path, "quan", contract["tuning"])
 
         with tempfile.TemporaryDirectory() as temp_dir:
             out = os.path.join(temp_dir, "invalid.jsonl")

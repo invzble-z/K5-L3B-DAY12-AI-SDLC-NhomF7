@@ -11,7 +11,7 @@ class RestaurantFixtureContract(unittest.TestCase):
         customer = {"id": "C1", "table_id": "T1", "dish_id": "ca_loc_nuong_trui"}
         customer.update(customer_fields or {})
         scenario = write_json(directory.path("scenario.json"), {"quan": {
-            "stock": {"ca_loc": 1},
+            "stock": [{"id": "I1", "kind": "ca_loc", "fresh": 100}],
             "random_customers": random_customers,
             "customers": [customer],
         }})

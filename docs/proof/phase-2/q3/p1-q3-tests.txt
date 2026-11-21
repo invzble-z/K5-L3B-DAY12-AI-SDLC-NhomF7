@@ -1,0 +1,48 @@
+command: ['C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\python.exe', '-m', 'unittest', 'tests.test_p1_q3', '-v']
+exit: 0
+test_tc_q3_005_first_due_arrival_uses_elapsed_simulation_tick (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_005_first_due_arrival_uses_elapsed_simulation_tick)
+[PROPOSED] Arrival at first_customer_tick is emitted on that step. ... ok
+test_tc_q3_005_new_customer_keeps_full_patience_on_arrival_tick (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_005_new_customer_keeps_full_patience_on_arrival_tick)
+[PROPOSED] A customer spawned after countdown starts at its full configured patience. ... ok
+test_tc_q3_006_second_arrival_obeys_interval_across_two_tuned_tables (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_006_second_arrival_obeys_interval_across_two_tuned_tables)
+[PROPOSED] Scheduled arrivals use the configured interval and next free table. ... ok
+test_tc_q3_007_disabling_arrivals_does_not_disable_fixture_patience (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_007_disabling_arrivals_does_not_disable_fixture_patience) ... ok
+test_tc_q3_008_spawn_requires_the_full_recipe_in_available_stock (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_008_spawn_requires_the_full_recipe_in_available_stock)
+A partial multi-ingredient recipe cannot be selected or reserved. ... ok
+test_tc_q3_009_consuming_an_unrelated_rng_stream_does_not_change_customer (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_009_consuming_an_unrelated_rng_stream_does_not_change_customer)
+Named Streams keep unrelated random draws from shifting Q3 selection. ... ok
+test_tc_q3_010_same_seed_and_inputs_replay_the_same_session_rows (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_010_same_seed_and_inputs_replay_the_same_session_rows) ... ok
+test_tc_q3_017_expiry_before_serve_interaction_is_provisional (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_017_expiry_before_serve_interaction_is_provisional)
+[PROPOSED] Current step order expires waiting customers before serve interaction. ... ok
+test_tc_q3_019_expiry_on_last_time_tick_emits_left_and_end_once (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_019_expiry_on_last_time_tick_emits_left_and_end_once)
+[PROPOSED] Final-tick timeout and patience expiry each notify once on that tick. ... ok
+test_tc_q3_018_no_dish_queries_preserve_active_work (tests.test_p1_q3.Q3EndConditionTests.test_tc_q3_018_no_dish_queries_preserve_active_work)
+[PROPOSED] No order is possible when idle, but active work prevents idle status. ... ok
+test_tc_q3_001_missing_reserved_is_inferred_as_a_copy_of_menu_recipe (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_001_missing_reserved_is_inferred_as_a_copy_of_menu_recipe) ... ok
+test_tc_q3_001_tick_zero_hydrates_customer_and_table_mapping (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_001_tick_zero_hydrates_customer_and_table_mapping)
+A valid fixture is normalized before the first snapshot. ... ok
+test_tc_q3_002_existing_customer_ids_are_reserved_before_allocation (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_002_existing_customer_ids_are_reserved_before_allocation)
+Numeric ID ordering and allocator state include loaded customers. ... ok
+test_tc_q3_003_sessions_do_not_mutate_reused_scenario_or_menu (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_003_sessions_do_not_mutate_reused_scenario_or_menu)
+Nested reservation data is session-owned; restart can reuse input objects. ... ok
+test_tc_q3_004_ordered_customer_without_reserved_does_not_reserve_again (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_004_ordered_customer_without_reserved_does_not_reserve_again)
+[PROPOSED] Local ordered state means ingredients were consumed before hydration. ... ok
+test_tc_q3_004_q4_handoff_fixtures_hydrate_coherently (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_004_q4_handoff_fixtures_hydrate_coherently)
+[PROPOSED] Local waiting/cooking/eating fixture states hydrate coherently. ... ok
+test_tc_q3_020_invalid_overreservation_is_rejected_before_output (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_020_invalid_overreservation_is_rejected_before_output)
+The headless entry point returns the input error code without a partial JSONL. ... ok
+test_tc_q3_021_invalid_random_customers_type_is_rejected_before_output (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_021_invalid_random_customers_type_is_rejected_before_output) ... ok
+test_tc_q3_021_partial_recipe_reservation_is_rejected_before_output (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_021_partial_recipe_reservation_is_rejected_before_output)
+A valid but incomplete reservation fails during hydration before JSONL creation. ... ok
+test_tc_q3_015_eating_customer_is_not_waiting_timeout_target (tests.test_p1_q3.Q3PatienceTests.test_tc_q3_015_eating_customer_is_not_waiting_timeout_target) ... ok
+test_tc_q3_015_waiting_expiry_notifies_and_removes_once (tests.test_p1_q3.Q3PatienceTests.test_tc_q3_015_waiting_expiry_notifies_and_removes_once)
+[PROPOSED] Waiting patience reaches zero, notifies once, and releases once. ... ok
+test_tc_q3_011_reservation_is_atomic_and_competes_for_one_recipe (tests.test_p1_q3.Q3ReservationTests.test_tc_q3_011_reservation_is_atomic_and_competes_for_one_recipe)
+[PROPOSED] One dish's whole recipe is reserved or none of it is. ... ok
+test_tc_q3_012_release_and_consume_are_idempotent_without_refund (tests.test_p1_q3.Q3ReservationTests.test_tc_q3_012_release_and_consume_are_idempotent_without_refund)
+[PROPOSED] A release frees availability; consume debits stock at most once. ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.017s
+
+OK

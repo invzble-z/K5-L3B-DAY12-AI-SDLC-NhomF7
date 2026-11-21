@@ -1,0 +1,6 @@
+mock day-gather-v12: hold=[{"id":"I1","kind":"ca_loc","fresh":100},{"id":"I2","kind":"bong_sung","fresh":9
+mock day-quan-v12: hold=null
+mock day-gather: hold=["bong_sung","bong_sung","ca_loc","bong_sung","ca_loc"]
+mock day-quan: hold=null
+live v1.2 sau ~4 s: {"hold":[{"id":"I1","kind":"ca_loc","fresh":97.99166666666666},{"id":"I2","kind":"bong_sung","fresh":89.99166666666666},{"id":"I3","kind":"ca_linh","fresh":63.99166666666667},{"id":"I4","kind":"ca_linh","fresh":42.99166666666667},{"id":"I5","kind":"keo_neo","fresh":28.391666666666666},{"id":"I6","kind":"ca_keo","fresh":28.191666666666666},{"id":"I7","kind":"bong_sung","fresh":11.991666666666667}],"ev":[{"item_id":"I6","kind":"ca_keo","location":"hold"},{"item_id":"I5","kind":"keo_neo","location":"hold"}]}
+CONSOLE ERRORS: none

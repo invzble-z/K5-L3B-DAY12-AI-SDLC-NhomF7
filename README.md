@@ -15,10 +15,47 @@ Cách làm việc kỹ thuật là **tự do** (push thẳng, nhánh + PR, pair,
 
 ## Bắt đầu nhanh
 
+Trên macOS, Linux hoặc Ubuntu WSL, cần Git, Python 3.10 trở lên và trình duyệt. Bản chơi dùng thư viện chuẩn Python.
+
 ```bash
-git clone <fork-của-nhóm> && cd <fork-của-nhóm>
-PYTHONPATH=tests:. python3 -m unittest discover -s tests -v        # smoke test
-python3 -m chonoi.live --mode gather                                # chơi thử trên trình duyệt (tùy chọn)
+git clone https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7.git cho-noi
+cd cho-noi
+python3 -m chonoi.live --mode day
+```
+
+Mở địa chỉ in trên terminal. Dùng WASD hoặc phím mũi tên để di chuyển, E để tương tác, Space để bắt cá, Esc/P để tạm dừng và R để chơi lại.
+
+Nếu dùng ZIP, giải nén rồi chạy lệnh cuối từ thư mục `cho-noi`. Trên Windows PowerShell, dùng `python` nếu `python3` là lối tắt Microsoft Store.
+
+### Kiểm thử
+
+```bash
+PYTHONPATH=tests:. python3 -m unittest discover -s tests -v
+python3 -m chonoi.headless --mode day --days 1 --seed 1 --ticks 23000 --out day.jsonl
+```
+
+Lệnh benchmark có render và soak 10 ngày sẽ được cập nhật khi các module Phase 4 được tích hợp vào bản phát hành.
+
+Buổi tối có thể tự tìm `inventory.json` trong thư mục chạy lệnh; không bắt buộc truyền `--inventory`:
+
+```powershell
+python -m chonoi.live --mode quan --seed 1
+```
+
+Với `--mode day`, kho mặc định cũng được nạp tự động từ `inventory.json`, sau đó buổi sáng có thể cộng nguyên liệu mới vào kho.
+
+### Chơi nối buổi sáng sang quán
+
+```powershell
+python -m chonoi.live --mode day --seed 1 --inventory-out inventory.json
+```
+
+Mode `day` tự thu thập cá/rau ở buổi sáng, chuyển kho sang buổi tối và cho Út Sen nấu/bán món trong cùng cửa sổ trình duyệt. Sau buổi tối, kho dùng cho quán là kho khả dụng sau phần nguyên liệu khách đang giữ chỗ.
+
+Chạy headless một Ngày:
+
+```powershell
+python -m chonoi.headless --mode day --seed 1 --ticks 21600 --inventory-out inventory.json --out day.jsonl
 ```
 
 ### Lưu kho khi hái/bắt cá

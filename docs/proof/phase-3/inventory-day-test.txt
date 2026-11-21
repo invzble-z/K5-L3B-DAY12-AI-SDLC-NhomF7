@@ -1,0 +1,19 @@
+test_day_handoff_individual_items_and_id_continuity (tests.test_p3_inventory.InventoryPhase3Tests.test_day_handoff_individual_items_and_id_continuity)
+AC-P3-08: Bàn giao kho cá thể giữa các ngày và IdAllocator không đụng độ. ... ok
+test_day_headless_smoke_two_days (tests.test_p3_inventory.InventoryPhase3Tests.test_day_headless_smoke_two_days)
+AC-P3-08: Headless --mode day --days 2 --ticks 600 chạy trơn tru. ... ok
+test_item_class_initialization_and_access (tests.test_p3_inventory.InventoryPhase3Tests.test_item_class_initialization_and_access) ... ok
+test_item_rejects_invalid_values (tests.test_p3_inventory.InventoryPhase3Tests.test_item_rejects_invalid_values) ... ok
+test_merge_items_with_individual_items (tests.test_p3_inventory.InventoryPhase3Tests.test_merge_items_with_individual_items) ... ok
+test_read_inventory_v10_rejects_individual_inventory (tests.test_p3_inventory.InventoryPhase3Tests.test_read_inventory_v10_rejects_individual_inventory)
+Kho cá thể khi đọc với version 1.1 phải báo BadInput. ... ok
+test_read_inventory_v12_rejects_count_inventory (tests.test_p3_inventory.InventoryPhase3Tests.test_read_inventory_v12_rejects_count_inventory)
+Kho đếm khi đọc với version 1.2 phải báo BadInput. ... ok
+test_read_inventory_v12_validation (tests.test_p3_inventory.InventoryPhase3Tests.test_read_inventory_v12_validation) ... ok
+test_write_and_read_v12_roundtrip_preserves_threshold_30 (tests.test_p3_inventory.InventoryPhase3Tests.test_write_and_read_v12_roundtrip_preserves_threshold_30)
+Ghi rồi đọc lại giữ đúng giá trị ở ngưỡng 30 và sắp theo id. ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.279s
+
+OK

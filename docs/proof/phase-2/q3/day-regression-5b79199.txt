@@ -1,0 +1,39 @@
+Q3 Day integration regression summary
+Verified branch HEAD: 5b79199 (origin/main ba17f4d merged); integration tests: 84f9546, 053867b
+Branch: p2/q3-day-integration
+Runtime: Python 3.11.9, Windows / Python 3.11.9
+
+Commands and results after adding tests/test_p2_q3_day_integration.py:
+
+  python -m unittest tests.test_p2_day -v
+  6 tests, passed, exit 0.
+
+  python -m unittest tests.test_p2_q3 tests.test_p2_quoc tests.test_p2_quan_lat3b -v
+  19 tests, passed, exit 0. Includes Q4-F1 reproduction, 2-stove order selection,
+  order_tick/table_id priority, all six dishes, reservation and burn regression.
+
+  python -m unittest tests.test_p2_q3_day_integration -v
+  15 tests; 10 passed, 5 expected failures; exit 0. The failures represent unresolved
+  DaySim/Runner behavior and are not marked as accepted.
+
+  python -m unittest tests.test_p3_quan_price tests.test_p3_gather tests.test_p2_fish -q
+  14 tests, passed, exit 0. Phase 2 fish and Phase 3 gather/Quan coverage remains intact.
+
+  python -m unittest discover -s tests -v
+  143 tests; OK (expected failures=5); exit 0.
+
+  python .agents/skills/phase-1-verification/scripts/verify_phase1.py --no-proof
+  9/9 verification steps; 143 tests; headless gather and quan byte-deterministic;
+  sample inventory accepted; invalid inputs return 2 without output; exit 0.
+
+  python .agents/skills/python-fact-grounded-coding/scripts/check_rules.py
+  5 files scanned, 0 rule errors; literal review advisories only.
+
+Headless hashes from phase-1-verification on this branch:
+  gather seed=1, ticks=600: 57f6241e72d36634…
+  quan seed=1, ticks=600:   4bb52b6fea202058…
+
+  git diff --check
+  exit 0.
+
+The expected failures and policy/contract limitations are itemized in day-findings.md.

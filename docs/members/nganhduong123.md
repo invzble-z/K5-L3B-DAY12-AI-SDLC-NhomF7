@@ -1,15 +1,14 @@
 # nganhduong123 — phản tư cá nhân (≤ 200 từ)
 
-> Nháp giữa buổi (sau Phase 2). Cập nhật lại ở Phase 4.
-
-- Tôi đã làm (kèm link commit):
-  - Vai PO: TEAM.md, phân vai 7 người, `team_size = 7` ([8bc3a7f](https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7/commit/8bc3a7f)); `docs/clarify.md` #1–#4; kế hoạch chia việc P1–P4 ([345bc97](https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7/commit/345bc97), [44ab52d](https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7/commit/44ab52d)).
-  - Client web Ticket-02: menu, intro, pause, Shop, HUD ([eaf635a](https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7/commit/eaf635a)); vẽ lại cảnh lặn và quán ([e9780b8](https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7/commit/e9780b8)).
-  - Harness AI: 2 skill trong `.agents/skills/` và script kiểm chứng tự xử lý `python3` trên Windows ([d506d1b](https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7/commit/d506d1b)).
-- Tôi đã review (kèm link):
-  - Chưa có review ghi trên GitHub. Tôi tự gộp PR #2 và #5 của mình. Từ Phase 3 tôi sẽ review PR của invzble-z (người tôi dự phòng).
-- AI sai ở đâu và tôi phát hiện thế nào:
-  - AI ghi "đã gắn tag `phase-1`" mà không kiểm. Tôi chạy `git ls-remote --tags origin`, thấy rỗng nên sửa lại.
-  - AI đề xuất lưu độ tươi bằng 240 đơn vị/điểm. Khi rà lại thấy cách này chỉ đúng với fixture là bội của 1/240 (`33.33 × 240 = 7999.2`, không nguyên), nên kế hoạch Phase 3 đổi sang `Fraction`.
+- Tôi đã làm:
+  - PO: TEAM.md, kế hoạch P1–P4 ([8bc3a7f](https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7/commit/8bc3a7f), [44ab52d](https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7/commit/44ab52d)), hợp đồng ([bfb5160](https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7/commit/bfb5160)), clarify, retro, ADR 0001–0003.
+  - Client web: menu, Shop, HUD ([eaf635a](https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7/commit/eaf635a)); nối `day` thật ([f3f4a5f](https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7/commit/f3f4a5f)); HUD độ tươi, bench, cảnh báo, tương phản cao ([PR #15](https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7/pull/15)).
+  - 2 skill kiểm chứng ([d506d1b](https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7/commit/d506d1b)).
+- Đã giúp: chốt Q3 D-01..D-09, `no_dish` cho Quốc, Q4-F1 cho Kiên (clarify #10–#15). Tìm lỗi `contract_version` không vào `tuning` cho Bào, Dũng (#9).
+- Review: chưa review PR nào trên GitHub.
+- AI sai:
+  - Ghi "đã gắn tag `phase-1`"; `git ls-remote --tags` rỗng.
+  - Đề xuất độ tươi 240 đơn vị/điểm, sai với `33.33`; đổi sang `Fraction`.
+  - Xếp PR #13 vào tag `phase-2`; `git merge-base` cho thấy gộp sau tag.
 - Điều tôi học được:
   - _(Tự điền: 1–2 câu bằng lời của bạn.)_

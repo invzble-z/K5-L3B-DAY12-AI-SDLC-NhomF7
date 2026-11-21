@@ -23,7 +23,22 @@
   CN.ui = {
     panel(x, y, w, h, o = {}) {
       ctx.fillStyle = o.fill || COLOR.panel; CN.rrect(x, y, w, h, o.r ?? 10); ctx.fill();
-      ctx.strokeStyle = o.stroke || COLOR.line; ctx.lineWidth = o.lineWidth || 1; ctx.stroke();
+      ctx.strokeStyle = o.stroke || COLOR.line; ctx.lineWidth = Math.max(o.lineWidth || 1, CN.contrast.on ? 2 : 0); ctx.stroke();
+    },
+
+    // Cảnh báo (TICKET-04): biểu tượng tam giác "!" + chữ trong khung viền màu. Không chỉ dựa vào màu;
+    // ở tương phản cao nền đen đặc, chữ trắng, viền dày. (x, y) là tâm.
+    alert(x, y, label, color, o = {}) {
+      const size = Math.max(18, o.size || 22), hc = CN.contrast.on;
+      ctx.font = "800 " + size + "px system-ui, sans-serif";
+      const tw = ctx.measureText(label).width, iw = size * 1.1, w = tw + iw + 30, h = size + 16;
+      CN.ui.panel(x - w / 2, y - h / 2, w, h, { fill: hc ? "#000" : "rgba(12,16,22,.86)", stroke: color, lineWidth: hc ? 4 : 2, r: h / 2 });
+      const ix = x - w / 2 + 12 + iw / 2, s2 = size * 0.5;
+      ctx.fillStyle = color; ctx.beginPath();
+      ctx.moveTo(ix, y - s2 * 0.95); ctx.lineTo(ix + s2, y + s2 * 0.85); ctx.lineTo(ix - s2, y + s2 * 0.85); ctx.closePath(); ctx.fill();
+      text("!", ix, y + s2 * 0.5, { size: 18, align: "center", weight: "900", color: "#000", noOutline: true });
+      text(label, ix + iw / 2 + 8, y + 1, { size, base: "middle", weight: "800", color: hc ? "#fff" : color });
+      return w;
     },
 
     // Vòng tiến độ quanh (x, y); frac 1 = đầy.
@@ -70,7 +85,7 @@
       const bob = Math.sin(CN.now() * 4) * 2, top = y - 36 + bob;
       CN.ui.panel(x - w / 2, top, w, 32, { r: 16, fill: "rgba(12,20,28,.88)" });
       ctx.fillStyle = COLOR.gold; CN.rrect(x - w / 2 + 5, top + 4, kw, 24, 6); ctx.fill();
-      text(key, x - w / 2 + 5 + kw / 2, top + 17, { size: 18, align: "center", base: "middle", color: "#1b1b1b", weight: "700" });
+      text(key, x - w / 2 + 5 + kw / 2, top + 17, { size: 18, align: "center", base: "middle", color: "#1b1b1b", weight: "700", noOutline: true });
       text(label, x - w / 2 + kw + 12, top + 17, { size: 18, base: "middle", weight: "600" });
     },
 
@@ -79,7 +94,7 @@
       ctx.font = "700 18px system-ui, sans-serif";
       const kw = Math.max(28, ctx.measureText(key).width + 12);
       ctx.fillStyle = COLOR.gold; CN.rrect(x, y - 13, kw, 26, 6); ctx.fill();
-      text(key, x + kw / 2, y + 1, { size: 18, align: "center", base: "middle", color: "#1b1b1b", weight: "700" });
+      text(key, x + kw / 2, y + 1, { size: 18, align: "center", base: "middle", color: "#1b1b1b", weight: "700", noOutline: true });
       return kw;
     },
   };

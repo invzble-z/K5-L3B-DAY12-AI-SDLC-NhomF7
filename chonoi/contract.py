@@ -17,13 +17,29 @@ def _between(name, v, lo, hi):
         raise BadInput(f"tuning.{name} phải trong [{lo}, {hi}], đang là {v!r}")
 
 
+def validate_contract(c: dict):
+    if not isinstance(c, dict):
+        raise BadInput("contract phải là object")
+    validate_tuning(c.get("tuning"))
+    ver = c.get("contract_version")
+    if ver == "1.3":
+        bench = c.get("bench_cmd")
+        if not isinstance(bench, str) or not bench.strip():
+            raise BadInput("contract v1.3 yêu cầu bench_cmd là chuỗi không rỗng")
+        soak = c.get("soak_cmd")
+        if not isinstance(soak, str) or not soak.strip():
+            raise BadInput("contract v1.3 yêu cầu soak_cmd là chuỗi không rỗng")
+
+
 def load_contract(path=DEFAULT_PATH) -> dict:
     try:
         with open(path, encoding="utf-8") as f:
             c = json.load(f)
     except (OSError, ValueError) as e:
         raise BadInput(f"không đọc được {path}: {e}")
-    validate_tuning(c.get("tuning"))
+    validate_contract(c)
+    # Inventory schema semantics follow the manifest version all the way into sims.
+    c["tuning"]["contract_version"] = c.get("contract_version", "1.1")
     return c
 
 
@@ -149,3 +165,11 @@ def validate_tuning(t):
         price, cook = d.get("price"), d.get("cook_s")
         if isinstance(price, bool) or not isinstance(price, int) or price <= 0 or not _num(cook) or cook <= 0:
             raise BadInput(f"menu.{dish_id}: price (nguyên) và cook_s phải > 0")
+    freshness = t.get("freshness")
+    if freshness is not None:
+        if not isinstance(freshness, dict):
+            raise BadInput("tuning.freshness phải là object")
+        _between("freshness.initial", freshness.get("initial"), 0, 100)
+        _between("freshness.gather_decay_per_s", freshness.get("gather_decay_per_s"), 0, 100)
+        _between("freshness.quan_decay_per_s", freshness.get("quan_decay_per_s"), 0, 100)
+        _between("freshness.spoiled_below", freshness.get("spoiled_below"), 0, 100)

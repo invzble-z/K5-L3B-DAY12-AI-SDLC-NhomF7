@@ -5,10 +5,13 @@ Client **chỉ vẽ**: đọc snapshot từ `GET /state`, gửi phím qua `POST 
 ## Chạy
 
 ```powershell
-python -X utf8 -m chonoi.live --mode gather      # hoặc --mode quan; --mode day khi lát 4a xong
+python -X utf8 -m chonoi.live --mode day         # vòng D1–D5 (mặc định 5 Ngày; --days 1..5 để chơi ngắn hơn)
+python -X utf8 -m chonoi.live --mode gather      # hoặc --mode quan: chơi riêng một buổi
 ```
 
 Mở http://127.0.0.1:8000/ → Menu → **Chơi**. (`-X utf8` tránh lỗi in tiếng Việt trên Windows.)
+
+Luồng `day`: Menu → DayIntro (4 s) → Lặn → EveningIntro → Quán → DayResult → Shop → Ngày kế … → Tổng kết. Intro/kết quả gửi `pause` nên đồng hồ đứng yên. Chạy riêng `gather`/`quan`, máy chủ live tự giữ trạng thái tạm dừng (sim hai pha này không có `pause`), xem ADR 0001.
 
 **Mock** (vẽ khi sim chưa xong; phím không gửi lên máy chủ, `P` bật/tắt tạm dừng tại chỗ, `R` đọc lại file):
 
@@ -20,12 +23,14 @@ Mở http://127.0.0.1:8000/ → Menu → **Chơi**. (`-X utf8` tránh lỗi in t
 | `/?mock=day-quan` | EveningIntro (nhập kho, món nấu được), kiên nhẫn < 25% |
 | `/?mock=day-shop` | Shop nâng cấp oxygen/hp |
 | `/?mock=day-summary` | Tổng kết sau Ngày 5 |
+| `/?mock=day-gather-v12` | v1.2: giỏ cá thể, số + thanh độ tươi từng ô, "ươn" khi < 30 |
+| `/?mock=day-quan-v12` | v1.2: kho cá thể, thanh độ tươi theo loài, số hàng ươn |
 
 Sửa file JSON trong `mock/` để thử trạng thái khác (vd. `"state": "paused"`, `"finished": true`).
 
 ## Phím
 
-WASD/mũi tên di chuyển · E tương tác · Space bắt cá · Esc/P tạm dừng (M về menu) · R chơi lại · Shop: 1..n mua, Enter đóng · Q/F cho mở rộng Lao/Sổ tay · `` ` `` nhật ký sự kiện (debug).
+WASD/mũi tên di chuyển · E tương tác · Space bắt cá · Esc/P tạm dừng (M về menu) · **H tương phản cao** (lưu lại; `?contrast=1|0` ghi đè) · R chơi lại · Shop: 1..n mua, Enter đóng · Q/F cho mở rộng Lao/Sổ tay · `` ` `` nhật ký sự kiện (debug).
 
 ## Cấu trúc (mỗi thư mục một chủ)
 
@@ -34,6 +39,7 @@ WASD/mũi tên di chuyển · E tương tác · Space bắt cá · Esc/P tạm d
 | `js/core/draw.js` | Canvas, bảng màu, tên loài/món, chữ, thanh, khung bo góc |
 | `js/core/art.js` | Nét vẽ tự làm: cá theo loài, bông/rau, khăn rằn, quầng sáng; hàm băm cố định thay cho số ngẫu nhiên |
 | `js/core/widgets.js` | Khung, vòng tiến độ, icon nguyên liệu/món, bong bóng, gợi ý phím |
+| `js/core/bench.js` | `/?bench=1[&warmup=3&duration=30]`: bỏ menu/intro, đứng yên, đo thời gian khung, `POST /bench` (TICKET-04) |
 | `js/core/net.js` | `/state`, `/input` (trạng thái phím, `tap` pause/shop_done, `buy`), mock |
 | `js/core/events.js` | Lọc sự kiện mới từ `snap.events` |
 | `js/core/input.js` | Bàn phím → màn hình hoặc phím chơi |

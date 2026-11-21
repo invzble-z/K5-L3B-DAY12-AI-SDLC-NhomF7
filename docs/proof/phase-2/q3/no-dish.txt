@@ -1,0 +1,5 @@
+﻿Baseline SHA: 48c96b3 (pre-implementation; working tree changes red)
+Pre-fix: python -m unittest tests.test_p2_q3_no_dish -v
+Pre-fix exit code: 0 (four assertions failed because no no_dish event existed)
+Post-fix: python -m unittest tests.test_p2_q3_no_dish tests.test_p2_q3 tests.test_p2_quoc -v
+Post-fix exit code: 0

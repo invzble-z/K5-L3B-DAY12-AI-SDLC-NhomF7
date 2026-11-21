@@ -20,9 +20,7 @@
     text(gather ? "Buổi sáng kết thúc" : "Đóng quán", x + cw / 2, y + 52, { size: 30, align: "center", weight: "800", color: COLOR.gold });
     text(REASON[snap.reason] || snap.reason || "", x + cw / 2, y + 90, { size: 20, align: "center" });
     if (gather) {
-      const c = {};
-      (snap.hold || []).forEach((k) => (c[k] = (c[k] || 0) + 1));
-      const items = Object.entries(c);
+      const items = Object.entries(CN.inv.counts(snap.hold));
       text("Mang về quán:", x + 40, y + 136, { size: 18, color: COLOR.muted });
       if (!items.length) text("(không có gì)", x + 180, y + 136, { size: 18, color: COLOR.muted });
       items.forEach(([k, n], i) => { ui.icon(k, x + 196 + i * 80, y + 130, 28); text("×" + n, x + 214 + i * 80, y + 137, { size: 18, weight: "700" }); });

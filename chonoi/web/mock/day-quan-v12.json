@@ -1,0 +1,284 @@
+{
+ "_ghi_chu": "Snapshot GIẢ theo Test Contract v1.1 (Ticket-02) để vẽ UI khi sim chưa xong. Trường của khách và data sự kiện ngoài bảng §4.4 là giả định; sửa theo docs/contracts/.",
+ "day": 1,
+ "day_plan": {
+  "dishes": {
+   "ca_loc_nuong_trui": 3,
+   "goi_bong_sung": 3
+  },
+  "ingredients": {
+   "ca_loc": 3,
+   "bong_sung": 6
+  }
+ },
+ "upgrades": {},
+ "active_upgrades": {},
+ "menu": {
+  "ca_loc_nuong_trui": {
+   "recipe": {
+    "ca_loc": 1
+   },
+   "cook_s": 6,
+   "price": 60
+  },
+  "goi_bong_sung": {
+   "recipe": {
+    "bong_sung": 2
+   },
+   "cook_s": 4,
+   "price": 40
+  },
+  "lau_ca_linh_dien_dien": {
+   "recipe": {
+    "ca_linh": 3,
+    "bong_dien_dien": 1
+   },
+   "cook_s": 10,
+   "price": 120
+  },
+  "canh_chua_ca_loc": {
+   "recipe": {
+    "ca_loc": 1,
+    "bong_dien_dien": 1
+   },
+   "cook_s": 8,
+   "price": 90
+  },
+  "ca_keo_nuong": {
+   "recipe": {
+    "ca_keo": 2
+   },
+   "cook_s": 6,
+   "price": 70
+  },
+  "lau_mam": {
+   "recipe": {
+    "ca_linh": 2,
+    "ca_keo": 1,
+    "keo_neo": 1,
+    "bong_dien_dien": 1
+   },
+   "cook_s": 12,
+   "price": 200
+  }
+ },
+ "type": "snapshot",
+ "tick": 13500,
+ "sim_tick": 13500,
+ "mode": "day",
+ "phase": "quan",
+ "phase_tick": 2700,
+ "state": "running",
+ "time_left_ticks": 1700,
+ "money": 120,
+ "earned": 120,
+ "shift_earned": 120,
+ "reputation": 3.2,
+ "score": 420,
+ "player": {
+  "pos": [
+   4.6,
+   7.0
+  ]
+ },
+ "stock": [
+  {
+   "id": "I1",
+   "kind": "ca_loc",
+   "fresh": 99.5
+  },
+  {
+   "id": "I2",
+   "kind": "ca_loc",
+   "fresh": 72.25
+  },
+  {
+   "id": "I3",
+   "kind": "ca_loc",
+   "fresh": 28.5
+  },
+  {
+   "id": "I4",
+   "kind": "bong_sung",
+   "fresh": 95
+  },
+  {
+   "id": "I5",
+   "kind": "bong_sung",
+   "fresh": 86
+  },
+  {
+   "id": "I6",
+   "kind": "bong_sung",
+   "fresh": 55
+  },
+  {
+   "id": "I7",
+   "kind": "bong_sung",
+   "fresh": 38
+  },
+  {
+   "id": "I8",
+   "kind": "ca_linh",
+   "fresh": 61.75
+  },
+  {
+   "id": "I9",
+   "kind": "ca_linh",
+   "fresh": 18
+  },
+  {
+   "id": "I10",
+   "kind": "bong_dien_dien",
+   "fresh": 90
+  }
+ ],
+ "hand": null,
+ "stoves": [
+  {
+   "id": "B1",
+   "pos": [
+    2,
+    8
+   ],
+   "state": "cooking",
+   "dish": "goi_bong_sung",
+   "cook_ticks_left": 90,
+   "ready_ticks": 0
+  },
+  {
+   "id": "B2",
+   "pos": [
+    5,
+    8
+   ],
+   "state": "ready",
+   "dish": "ca_loc_nuong_trui",
+   "cook_ticks_left": 0,
+   "ready_ticks": 120
+  }
+ ],
+ "tables": [
+  {
+   "id": "T1",
+   "pos": [
+    9,
+    2
+   ],
+   "customer_id": "C1"
+  },
+  {
+   "id": "T2",
+   "pos": [
+    13,
+    2
+   ],
+   "customer_id": "C2"
+  },
+  {
+   "id": "T3",
+   "pos": [
+    9,
+    6
+   ],
+   "customer_id": "C3"
+  },
+  {
+   "id": "T4",
+   "pos": [
+    13,
+    6
+   ],
+   "customer_id": null
+  }
+ ],
+ "customers": [
+  {
+   "id": "C1",
+   "table_id": "T1",
+   "dish_id": "goi_bong_sung",
+   "state": "waiting",
+   "patience_ticks_left": 600,
+   "order_tick": 120,
+   "reserved": {
+    "bong_sung": 2
+   }
+  },
+  {
+   "id": "C2",
+   "table_id": "T2",
+   "dish_id": "ca_loc_nuong_trui",
+   "state": "waiting",
+   "patience_ticks_left": 2900,
+   "order_tick": 1020,
+   "reserved": {
+    "ca_loc": 1
+   }
+  },
+  {
+   "id": "C3",
+   "table_id": "T3",
+   "dish_id": "ca_loc_nuong_trui",
+   "state": "eating",
+   "patience_ticks_left": 3000,
+   "order_tick": 1920,
+   "reserved": {}
+  }
+ ],
+ "meta": {
+  "bounds": {
+   "x": [
+    0,
+    16
+   ],
+   "z": [
+    0,
+    10
+   ]
+  },
+  "interact_radius": 1.5,
+  "patience_s": 60
+ },
+ "events": [
+  {
+   "type": "event",
+   "tick": 10800,
+   "phase": "quan",
+   "name": "phase_start",
+   "data": {},
+   "day": 1
+  },
+  {
+   "type": "event",
+   "tick": 12000,
+   "phase": "quan",
+   "name": "paid",
+   "data": {
+    "customer_id": "C0",
+    "price": 60,
+    "tip": 12
+   },
+   "day": 1
+  },
+  {
+   "type": "event",
+   "tick": 13200,
+   "phase": "quan",
+   "name": "dish_ready",
+   "data": {
+    "stove_id": "B2",
+    "dish_id": "ca_loc_nuong_trui"
+   },
+   "day": 1
+  }
+ ],
+ "finished": false,
+ "reason": null,
+ "error": null,
+ "freshness": {
+  "initial": 100,
+  "gather_decay_per_s": 0.5,
+  "quan_decay_per_s": 0.25,
+  "spoiled_below": 30
+ }
+}

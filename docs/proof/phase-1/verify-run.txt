@@ -1,19 +1,19 @@
 Kiểm chứng Phase 1 (verify_phase1.py)
-Thời điểm (UTC): 2026-11-21 05:02
-Commit: 71c2993 trên nhánh p2/phan-chia-cong-viec (có thay đổi chưa commit)
-Python: 3.13.0 (win32)
+Thời điểm (UTC): 2026-11-21 09:38
+Commit: 75232f3 trên nhánh Quoosc (có thay đổi chưa commit)
+Python: 3.11.9 (win32)
 python3: python3 trên Windows là lối tắt Store; dùng shim venv (python3.exe) trong thư mục tạm
 
 $ PYTHONPATH=tests:. python3 -m unittest discover -s tests -v
-[ĐẠT] unittest — chạy 88 test, OK
+[ĐẠT] unittest — chạy 216 test, OK
 $ python3 -m chonoi.headless --mode gather --seed 1 --ticks 600 --out gather.jsonl --inventory-out inv.json
 $ python3 -m chonoi.headless --mode gather --seed 1 --ticks 600 --out gather.jsonl --inventory-out inv.json   (lần 2)
 [ĐẠT] headless gather chạy được — mã thoát 0, sự kiện {'snapshot': 61, 'end': 1}
-[ĐẠT] headless gather tất định (cùng seed -> cùng byte) — sha256 72c30e63f0ca4f4d…
+[ĐẠT] headless gather tất định (cùng seed -> cùng byte) — sha256 6282950c3bc6aab9…
 $ python3 -m chonoi.headless --mode quan --seed 1 --ticks 600 --out quan.jsonl
 $ python3 -m chonoi.headless --mode quan --seed 1 --ticks 600 --out quan.jsonl   (lần 2)
-[ĐẠT] headless quan chạy được — mã thoát 0, sự kiện {'snapshot': 61, 'end': 1}
-[ĐẠT] headless quan tất định (cùng seed -> cùng byte) — sha256 27c95215d88839fd…
+[ĐẠT] headless quan chạy được — mã thoát 0, sự kiện {'snapshot': 61, 'event': 1, 'end': 1}
+[ĐẠT] headless quan tất định (cùng seed -> cùng byte) — sha256 e81640de8f47cd4d…
     Ghi chú: gather 600 tick chưa ghi kho (khớp test_inv_01_not_written_when_tick_limit_first: hết số tick trước khi cập bến thì không ghi)
 $ python3 -m chonoi.headless --mode quan --seed 1 --ticks 600 --inventory docs/contracts/inventory.sample.json --out quan-inv.jsonl
 [ĐẠT] quán nạp kho mẫu — mã thoát 0

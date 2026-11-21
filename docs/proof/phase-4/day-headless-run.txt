@@ -1,0 +1,11 @@
+﻿Command: python -m chonoi.headless --mode day --days 1 --seed 7 --ticks 5000 --out docs/proof/phase-4/day-1.jsonl
+Exit: 0
+Command: python -m chonoi.headless --mode day --days 3 --seed 7 --ticks 15000 --out docs/proof/phase-4/day-3.jsonl
+Exit: 0
+Command: same Day 3 command to day-3-replay.jsonl
+Replay exit: 0
+Day 3 sha256 run1: A2CE9F812305A932F63FF984B0AFD77091D2FAE288F403D19913E44300BA0E68
+Day 3 sha256 run2: A2CE9F812305A932F63FF984B0AFD77091D2FAE288F403D19913E44300BA0E68
+Byte-identical: True
+Day 1 JSONL rows: 505
+Day 3 JSONL rows: 1512

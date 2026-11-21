@@ -1,0 +1,8 @@
+bench screens.mode=play card=None phase=warm
+bench: {"seed": 42, "warmup_s": 3, "measured_s": 30.017, "frames": 1800, "avg_fps": 59.97, "p1_low_fps": 51.4, "first_frame_after_nav_ms": 91.2, "width": 1280, "height": 720, "dpr": 1, "note": "đối chiếu công thức; bench.json chính thức do chonoi/bench.py tính"}
+contrast=0: CN.contrast.on=False
+contrast=1: CN.contrast.on=True
+live contrast=1: {"m":[{"id":"M1","species":"ca_sau","pos":[57.37634690640023,22.688173453200115],"state":"recoil","waypoint_index":1,"recoil_ticks":58}],"o2":238,"d":[56,22]}
+live contrast=0: {"m":[{"id":"M1","species":"ca_sau","pos":[57.406161146100224,22.703080573050112],"state":"recoil","waypoint_index":1,"recoil_ticks":57}],"o2":237,"d":[56,22]}
+phím H: False -> True; tải lại không có ?contrast: True
+CONSOLE ERRORS: none

@@ -1,0 +1,48 @@
+Base 5dbdf13; no patch; current Q3 tests; exit 1
+test_each_new_shift_restarts_arrival_clock_and_copies_inventory (tests.test_p2_q3.CustomersPhase2.test_each_new_shift_restarts_arrival_clock_and_copies_inventory) ... ok
+test_full_tables_no_duplicates_and_no_queue (tests.test_p2_q3.CustomersPhase2.test_full_tables_no_duplicates_and_no_queue) ... ok
+test_payment_and_departure_release_tables (tests.test_p2_q3.CustomersPhase2.test_payment_and_departure_release_tables) ... ok
+test_plan_filters_before_recipe_and_rng (tests.test_p2_q3.CustomersPhase2.test_plan_filters_before_recipe_and_rng) ... ok
+test_q4_f1_orphan_dish_reproduced (tests.test_p2_q3.CustomersPhase2.test_q4_f1_orphan_dish_reproduced) ... ok
+test_random_disabled_and_order_tick_snapshot (tests.test_p2_q3.CustomersPhase2.test_random_disabled_and_order_tick_snapshot) ... FAIL
+test_seed_replay_and_no_filter (tests.test_p2_q3.CustomersPhase2.test_seed_replay_and_no_filter) ... ok
+test_six_dishes_independent_and_full_recipe (tests.test_p2_q3.CustomersPhase2.test_six_dishes_independent_and_full_recipe) ... ok
+test_two_distinct_orders_consumed_once (tests.test_p2_q3.CustomersPhase2.test_two_distinct_orders_consumed_once) ... ok
+test_two_stoves_do_not_consume_same_order (tests.test_p2_q3.CustomersPhase2.test_two_stoves_do_not_consume_same_order) ... ok
+test_empty_plan_and_invalid_dish (tests.test_p2_quoc.Phase2Customers.test_empty_plan_and_invalid_dish) ... FAIL
+test_schedule_four_tables_and_plan_filter (tests.test_p2_quoc.Phase2Customers.test_schedule_four_tables_and_plan_filter) ... ok
+test_burn_mechanic_and_discard (tests.test_p2_quan_lat3b.QuanLat3bPhase2Tests.test_burn_mechanic_and_discard)
+C\u01a1 ch\u1ebf m\u1edf r\u1ed9ng burn: khi b\u1eadt burn_s = 20s, ready quá 1200 ticks chuy\u1ec3n sang burned. ... ok
+test_nearest_interaction_priority (tests.test_p2_quan_lat3b.QuanLat3bPhase2Tests.test_nearest_interaction_priority)
+T\u01b0\u01a1ng tác \u01b0u tiên \u0111\u1ed1i t\u01b0\u1ee3ng g\u1ea7n nh\u1ea5t; n\u1ebfu kho\u1ea3ng cách b\u1eb1ng nhau \u01b0u tiên B\u1ebfp tr\u01b0\u1edbc Bàn. ... ok
+test_oldest_order_served_first (tests.test_p2_quan_lat3b.QuanLat3bPhase2Tests.test_oldest_order_served_first)
+B\u1ebfp tr\u1ed1ng t\u1ef1 \u0111\u1ed9ng ch\u1ecdn \u0111\u01a1n c\u1ee7a khách có order_tick c\u0169 nh\u1ea5t. ... ok
+test_same_order_tick_prioritizes_lower_table_id (tests.test_p2_quan_lat3b.QuanLat3bPhase2Tests.test_same_order_tick_prioritizes_lower_table_id)
+N\u1ebfu order_tick b\u1eb1ng nhau, \u01b0u tiên khách \u1edf bàn có id nh\u1ecf h\u01a1n (T1 < T2). ... ok
+test_shift_ends_cleans_stoves_and_hand (tests.test_p2_quan_lat3b.QuanLat3bPhase2Tests.test_shift_ends_cleans_stoves_and_hand)
+\u0110óng ca d\u1ecdn món: khi h\u1ebft gi\u1edd ca, t\u1ef1 \u0111\u1ed9ng d\u1ecdn s\u1ea1ch các món trên b\u1ebfp và trên tay. ... ok
+test_six_dishes_cooking_and_serving (tests.test_p2_quan_lat3b.QuanLat3bPhase2Tests.test_six_dishes_cooking_and_serving)
+Th\u1ef1c \u0111\u01a1n 6 món (\u0111\u1eb7c bi\u1ec7t các món ph\u1ee9c t\u1ea1p nh\u01b0 lau_mam) n\u1ea5u và ph\u1ee5c v\u1ee5 thành công. ... ok
+test_two_stoves_cooking_simultaneously (tests.test_p2_quan_lat3b.QuanLat3bPhase2Tests.test_two_stoves_cooking_simultaneously)
+2 b\u1ebfp B1 và B2 có th\u1ec3 n\u1ea5u song song \u0111\u1ed9c l\u1eadp và phát s\u1ef1 ki\u1ec7n dish_ready \u0111úng th\u1eddi \u0111i\u1ec3m. ... ok
+
+======================================================================
+FAIL: test_random_disabled_and_order_tick_snapshot (tests.test_p2_q3.CustomersPhase2.test_random_disabled_and_order_tick_snapshot)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\admin\AppData\Local\Temp\quoc-q4-review-5dbdf13\tests\test_p2_q3.py", line 59, in test_random_disabled_and_order_tick_snapshot
+    with self.assertRaises(BadInput):
+AssertionError: BadInput not raised
+
+======================================================================
+FAIL: test_empty_plan_and_invalid_dish (tests.test_p2_quoc.Phase2Customers.test_empty_plan_and_invalid_dish)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\admin\AppData\Local\Temp\quoc-q4-review-5dbdf13\tests\test_p2_quoc.py", line 35, in test_empty_plan_and_invalid_dish
+    self.assertFalse(sim._can_accept_order())
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.084s
+
+FAILED (failures=2)

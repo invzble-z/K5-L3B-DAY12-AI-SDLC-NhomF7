@@ -1,0 +1,131 @@
+Post-documentation verification; tested code HEAD 63f850e47785a1036fa1c2015498d20795236ad1; Python 3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]
+
+$ python -m unittest test_p1_q3 -v
+test_tc_q3_005_first_due_arrival_uses_elapsed_simulation_tick (test_p1_q3.Q3ArrivalTests.test_tc_q3_005_first_due_arrival_uses_elapsed_simulation_tick)
+[PROPOSED] Arrival at first_customer_tick is emitted on that step. ... ok
+test_tc_q3_005_new_customer_keeps_full_patience_on_arrival_tick (test_p1_q3.Q3ArrivalTests.test_tc_q3_005_new_customer_keeps_full_patience_on_arrival_tick)
+[PROPOSED] A customer spawned after countdown starts at its full configured patience. ... ok
+test_tc_q3_006_second_arrival_obeys_interval_across_two_tuned_tables (test_p1_q3.Q3ArrivalTests.test_tc_q3_006_second_arrival_obeys_interval_across_two_tuned_tables)
+[PROPOSED] Scheduled arrivals use the configured interval and next free table. ... ok
+test_tc_q3_007_disabling_arrivals_does_not_disable_fixture_patience (test_p1_q3.Q3ArrivalTests.test_tc_q3_007_disabling_arrivals_does_not_disable_fixture_patience) ... ok
+test_tc_q3_008_spawn_requires_the_full_recipe_in_available_stock (test_p1_q3.Q3ArrivalTests.test_tc_q3_008_spawn_requires_the_full_recipe_in_available_stock)
+A partial multi-ingredient recipe cannot be selected or reserved. ... ok
+test_tc_q3_009_consuming_an_unrelated_rng_stream_does_not_change_customer (test_p1_q3.Q3ArrivalTests.test_tc_q3_009_consuming_an_unrelated_rng_stream_does_not_change_customer)
+Named Streams keep unrelated random draws from shifting Q3 selection. ... ok
+test_tc_q3_010_same_seed_and_inputs_replay_the_same_session_rows (test_p1_q3.Q3ArrivalTests.test_tc_q3_010_same_seed_and_inputs_replay_the_same_session_rows) ... ok
+test_tc_q3_017_expiry_before_serve_interaction_is_provisional (test_p1_q3.Q3ArrivalTests.test_tc_q3_017_expiry_before_serve_interaction_is_provisional)
+[PROPOSED] Current step order expires waiting customers before serve interaction. ... ok
+test_tc_q3_019_expiry_on_last_time_tick_emits_left_and_end_once (test_p1_q3.Q3ArrivalTests.test_tc_q3_019_expiry_on_last_time_tick_emits_left_and_end_once)
+[PROPOSED] Final-tick timeout and patience expiry each notify once on that tick. ... ok
+test_tc_q3_018_no_dish_queries_preserve_active_work (test_p1_q3.Q3EndConditionTests.test_tc_q3_018_no_dish_queries_preserve_active_work)
+[PROPOSED] No order is possible when idle, but active work prevents idle status. ... ok
+test_tc_q3_001_missing_reserved_is_inferred_as_a_copy_of_menu_recipe (test_p1_q3.Q3HydrationTests.test_tc_q3_001_missing_reserved_is_inferred_as_a_copy_of_menu_recipe) ... ok
+test_tc_q3_001_tick_zero_hydrates_customer_and_table_mapping (test_p1_q3.Q3HydrationTests.test_tc_q3_001_tick_zero_hydrates_customer_and_table_mapping)
+A valid fixture is normalized before the first snapshot. ... ok
+test_tc_q3_002_existing_customer_ids_are_reserved_before_allocation (test_p1_q3.Q3HydrationTests.test_tc_q3_002_existing_customer_ids_are_reserved_before_allocation)
+Numeric ID ordering and allocator state include loaded customers. ... ok
+test_tc_q3_003_sessions_do_not_mutate_reused_scenario_or_menu (test_p1_q3.Q3HydrationTests.test_tc_q3_003_sessions_do_not_mutate_reused_scenario_or_menu)
+Nested reservation data is session-owned; restart can reuse input objects. ... ok
+test_tc_q3_004_ordered_customer_without_reserved_does_not_reserve_again (test_p1_q3.Q3HydrationTests.test_tc_q3_004_ordered_customer_without_reserved_does_not_reserve_again)
+[PROPOSED] Local ordered state means ingredients were consumed before hydration. ... ok
+test_tc_q3_004_q4_handoff_fixtures_hydrate_coherently (test_p1_q3.Q3HydrationTests.test_tc_q3_004_q4_handoff_fixtures_hydrate_coherently)
+[PROPOSED] Local waiting/cooking/eating fixture states hydrate coherently. ... ok
+test_tc_q3_020_invalid_overreservation_is_rejected_before_output (test_p1_q3.Q3HydrationTests.test_tc_q3_020_invalid_overreservation_is_rejected_before_output)
+The headless entry point returns the input error code without a partial JSONL. ... ok
+test_tc_q3_021_invalid_random_customers_type_is_rejected_before_output (test_p1_q3.Q3HydrationTests.test_tc_q3_021_invalid_random_customers_type_is_rejected_before_output) ... ok
+test_tc_q3_021_partial_recipe_reservation_is_rejected_before_output (test_p1_q3.Q3HydrationTests.test_tc_q3_021_partial_recipe_reservation_is_rejected_before_output)
+A valid but incomplete reservation fails during hydration before JSONL creation. ... ok
+test_tc_q3_015_eating_customer_is_not_waiting_timeout_target (test_p1_q3.Q3PatienceTests.test_tc_q3_015_eating_customer_is_not_waiting_timeout_target) ... ok
+test_tc_q3_015_waiting_expiry_notifies_and_removes_once (test_p1_q3.Q3PatienceTests.test_tc_q3_015_waiting_expiry_notifies_and_removes_once)
+[PROPOSED] Waiting patience reaches zero, notifies once, and releases once. ... ok
+test_tc_q3_011_reservation_is_atomic_and_competes_for_one_recipe (test_p1_q3.Q3ReservationTests.test_tc_q3_011_reservation_is_atomic_and_competes_for_one_recipe)
+[PROPOSED] One dish's whole recipe is reserved or none of it is. ... ok
+test_tc_q3_012_release_and_consume_are_idempotent_without_refund (test_p1_q3.Q3ReservationTests.test_tc_q3_012_release_and_consume_are_idempotent_without_refund)
+[PROPOSED] A release frees availability; consume debits stock at most once. ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.018s
+
+OK
+
+EXIT 0
+
+$ python -m unittest test_p2_q3 test_p2_quoc -v
+test_each_new_shift_restarts_arrival_clock_and_copies_inventory (test_p2_q3.CustomersPhase2.test_each_new_shift_restarts_arrival_clock_and_copies_inventory) ... ok
+test_full_tables_no_duplicates_and_no_queue (test_p2_q3.CustomersPhase2.test_full_tables_no_duplicates_and_no_queue) ... ok
+test_payment_and_departure_release_tables (test_p2_q3.CustomersPhase2.test_payment_and_departure_release_tables) ... ok
+test_plan_filters_before_recipe_and_rng (test_p2_q3.CustomersPhase2.test_plan_filters_before_recipe_and_rng) ... ok
+test_q4_f1_orphan_dish_reproduced (test_p2_q3.CustomersPhase2.test_q4_f1_orphan_dish_reproduced) ... ok
+test_random_disabled_and_order_tick_snapshot (test_p2_q3.CustomersPhase2.test_random_disabled_and_order_tick_snapshot) ... ok
+test_seed_replay_and_no_filter (test_p2_q3.CustomersPhase2.test_seed_replay_and_no_filter) ... ok
+test_six_dishes_independent_and_full_recipe (test_p2_q3.CustomersPhase2.test_six_dishes_independent_and_full_recipe) ... ok
+test_two_distinct_orders_consumed_once (test_p2_q3.CustomersPhase2.test_two_distinct_orders_consumed_once) ... ok
+test_two_stoves_do_not_consume_same_order (test_p2_q3.CustomersPhase2.test_two_stoves_do_not_consume_same_order) ... ok
+test_empty_plan_and_invalid_dish (test_p2_quoc.Phase2Customers.test_empty_plan_and_invalid_dish) ... ok
+test_schedule_four_tables_and_plan_filter (test_p2_quoc.Phase2Customers.test_schedule_four_tables_and_plan_filter) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.069s
+
+OK
+
+EXIT 0
+
+$ python -m unittest test_p2_quan_lat3b -v
+test_burn_mechanic_and_discard (test_p2_quan_lat3b.QuanLat3bPhase2Tests.test_burn_mechanic_and_discard)
+Cơ chế mở rộng burn: khi bật burn_s = 20s, ready quá 1200 ticks chuyển sang burned. ... ok
+test_nearest_interaction_priority (test_p2_quan_lat3b.QuanLat3bPhase2Tests.test_nearest_interaction_priority)
+Tương tác ưu tiên đối tượng gần nhất; nếu khoảng cách bằng nhau ưu tiên Bếp trước Bàn. ... ok
+test_oldest_order_served_first (test_p2_quan_lat3b.QuanLat3bPhase2Tests.test_oldest_order_served_first)
+Bếp trống tự động chọn đơn của khách có order_tick cũ nhất. ... ok
+test_same_order_tick_prioritizes_lower_table_id (test_p2_quan_lat3b.QuanLat3bPhase2Tests.test_same_order_tick_prioritizes_lower_table_id)
+Nếu order_tick bằng nhau, ưu tiên khách ở bàn có id nhỏ hơn (T1 < T2). ... ok
+test_shift_ends_cleans_stoves_and_hand (test_p2_quan_lat3b.QuanLat3bPhase2Tests.test_shift_ends_cleans_stoves_and_hand)
+Đóng ca dọn món: khi hết giờ ca, tự động dọn sạch các món trên bếp và trên tay. ... ok
+test_six_dishes_cooking_and_serving (test_p2_quan_lat3b.QuanLat3bPhase2Tests.test_six_dishes_cooking_and_serving)
+Thực đơn 6 món (đặc biệt các món phức tạp như lau_mam) nấu và phục vụ thành công. ... ok
+test_two_stoves_cooking_simultaneously (test_p2_quan_lat3b.QuanLat3bPhase2Tests.test_two_stoves_cooking_simultaneously)
+2 bếp B1 và B2 có thể nấu song song độc lập và phát sự kiện dish_ready đúng thời điểm. ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.004s
+
+OK
+
+EXIT 0
+
+$ python .agents/skills/phase-1-verification/scripts/verify_phase1.py --no-proof
+Kiểm chứng Phase 1 (verify_phase1.py)
+Thời điểm (UTC): 2026-11-21 05:41
+Commit: 63f850e trên nhánh p2/q3-postmerge-verification (có thay đổi chưa commit)
+Python: 3.11.9 (win32)
+python3: python3 trên Windows là lối tắt Store; dùng shim venv (python3.exe) trong thư mục tạm
+
+$ PYTHONPATH=tests:. python3 -m unittest discover -s tests -v
+[ĐẠT] unittest — chạy 108 test, OK
+$ python3 -m chonoi.headless --mode gather --seed 1 --ticks 600 --out gather.jsonl --inventory-out inv.json
+$ python3 -m chonoi.headless --mode gather --seed 1 --ticks 600 --out gather.jsonl --inventory-out inv.json   (lần 2)
+[ĐẠT] headless gather chạy được — mã thoát 0, sự kiện {'snapshot': 61, 'end': 1}
+[ĐẠT] headless gather tất định (cùng seed -> cùng byte) — sha256 8f9444b263a45659…
+$ python3 -m chonoi.headless --mode quan --seed 1 --ticks 600 --out quan.jsonl
+$ python3 -m chonoi.headless --mode quan --seed 1 --ticks 600 --out quan.jsonl   (lần 2)
+[ĐẠT] headless quan chạy được — mã thoát 0, sự kiện {'snapshot': 61, 'end': 1}
+[ĐẠT] headless quan tất định (cùng seed -> cùng byte) — sha256 96558bc00b42fc85…
+    Ghi chú: gather 600 tick chưa ghi kho (khớp test_inv_01_not_written_when_tick_limit_first: hết số tick trước khi cập bến thì không ghi)
+$ python3 -m chonoi.headless --mode quan --seed 1 --ticks 600 --inventory docs/contracts/inventory.sample.json --out quan-inv.jsonl
+[ĐẠT] quán nạp kho mẫu — mã thoát 0
+$ python3 -m chonoi.headless --mode quan --seed 1 --ticks -1 --out bad.jsonl
+[ĐẠT] đầu vào sai (--ticks -1) -> mã 2, không ghi file — mã thoát 2
+$ python3 -m chonoi.headless --mode river --seed 1 --ticks 0 --out bad.jsonl
+[ĐẠT] đầu vào sai (--mode river) -> mã 2, không ghi file — mã thoát 2
+$ python3 -m chonoi.headless --mode gather --seed 1 --ticks 0 --inventory docs/contracts/inventory.sample.json --out bad.jsonl
+[ĐẠT] đầu vào sai (--inventory với gather) -> mã 2, không ghi file — mã thoát 2
+
+Tổng: 9/9 bước đạt.
+
+EXIT 0
+
+$ python -m chonoi.headless --mode day --seed 1 --ticks 600 --out C:\Users\admin\AppData\Local\Temp\quoc-day-final.jsonl
+đầu vào sai: --mode day chưa hỗ trợ ở contract v1.0 (có từ v1.1)
+
+EXIT 2

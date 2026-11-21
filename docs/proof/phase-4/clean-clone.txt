@@ -1,0 +1,21 @@
+Kiểm tra chuẩn bị đóng gói Phase 4 — 2026-11-21
+Môi trường: Ubuntu WSL, Python 3.14.4, Git 2.53.0.
+Nguồn thử: main 813b0b7, bản làm việc sạch sau khi clone từ GitHub.
+
+1. git clone https://github.com/invzble-z/K5-L3B-DAY12-AI-SDLC-NhomF7.git cho-noi
+2. cd cho-noi
+3. python3 -m chonoi.live --mode day --port 0
+
+Clone sạch: GET / và GET /state trả HTTP 200. Trang có canvas. Snapshot mode=day bắt đầu ở phase=gather.
+ZIP thử: git archive --format=zip --prefix=cho-noi/ HEAD, giải nén bằng python3 -m zipfile -e.
+Chạy từ ZIP đã giải nén: GET / và GET /state trả HTTP 200 với cùng kiểm tra trên.
+Kiểm tra bổ sung trên Windows: Chrome headless chụp giao diện 1280×720 từ ZIP đã giải nén. Ảnh có menu Chơi và Thoát. Chưa kiểm tra thao tác điều khiển trực tiếp.
+
+python3 -m chonoi.headless --mode day --days 1 --seed 1 --ticks 23000 --out day.jsonl
+Kết quả: days_complete, days_completed=1, ticks=22200.
+
+ZIP thử: cho-noi-preview-813b0b7.zip
+SHA-256: 9fd43afa5891ff59d15571ce13ff54399f4cc8c23a2ed61901edd4502a301096
+
+CREDITS.md ghi đồ họa Canvas tự tạo và công cụ AI hỗ trợ. Commit kiểm tra chưa có LICENSE ở gốc repo.
+ZIP chính thức cần tạo lại từ đúng commit gắn tag phase-4, sau khi bench và soak được tích hợp.

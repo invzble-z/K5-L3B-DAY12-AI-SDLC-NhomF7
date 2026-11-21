@@ -1,0 +1,15 @@
+1 menu: {"mode": "menu", "card": null, "phase": "gather", "state": "running", "day": 1, "tick": 46, "finished": false, "money": 0, "dc": 0, "md": 2, "tl": 554}
+2 DayIntro (sim paused): {"mode": "play", "card": "day", "phase": "gather", "state": "paused", "day": 1, "tick": 33, "finished": false, "money": 0, "dc": 0, "md": 2, "tl": 573}
+2b timer frozen during intro: {"mode": "play", "card": "day", "phase": "gather", "state": "paused", "day": 1, "tick": 121, "finished": false, "money": 0, "dc": 0, "md": 2, "tl": 573}
+3 intro auto-closed after 4s: {"mode": "play", "card": null, "phase": "gather", "state": "running", "day": 1, "tick": 269, "finished": false, "money": 0, "dc": 0, "md": 2, "tl": 571}
+4 pause menu: {"mode": "play", "card": null, "phase": "gather", "state": "paused", "day": 1, "tick": 347, "finished": false, "money": 0, "dc": 0, "md": 2, "tl": 500}
+4b resumed: {"mode": "play", "card": null, "phase": "gather", "state": "running", "day": 1, "tick": 386, "finished": false, "money": 0, "dc": 0, "md": 2, "tl": 491}
+5 FPS gather (3 s, 1280x720): 60.5
+6 EveningIntro: {"mode": "play", "card": "evening", "phase": "quan", "state": "paused", "day": 1, "tick": 885, "finished": false, "money": 0, "shift": 0, "dc": 0, "md": 2, "tl": 599}
+7 quan HUD: {"mode": "play", "card": null, "phase": "quan", "state": "running", "day": 1, "tick": 1110, "finished": false, "money": 0, "shift": 0, "dc": 0, "md": 2, "tl": 410}
+7b FPS quan: 60.1
+8 DayResult: {"mode": "play", "card": "result", "phase": "shop", "state": "paused", "day": 1, "tick": 1528, "finished": false, "money": 0, "dc": 0, "md": 2, "tl": 599}
+9 Shop (bấm 1): {"mode": "play", "card": null, "phase": "shop", "state": "running", "day": 1, "tick": 1598, "finished": false, "money": 0, "dc": 0, "md": 2, "tl": 557}
+10 Ngày 2 intro: {"mode": "play", "card": "day", "phase": "gather", "state": "paused", "day": 2, "tick": 1615, "finished": false, "money": 0, "dc": 1, "md": 2, "tl": 599}
+11 Summary: {"mode": "play", "card": null, "phase": "shop", "state": "finished", "day": 2, "tick": 2838, "finished": true, "money": 0, "dc": 2, "md": 2, "tl": 589}
+CONSOLE ERRORS: none

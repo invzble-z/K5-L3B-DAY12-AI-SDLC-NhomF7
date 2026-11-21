@@ -17,4 +17,3 @@ test_two_stoves_cooking_simultaneously (tests.test_p2_quan_lat3b.QuanLat3bPhase2
 Ran 7 tests in 0.006s
 
 OK
-

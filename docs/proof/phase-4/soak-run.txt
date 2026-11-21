@@ -1,0 +1,10 @@
+﻿Branch: Quoosc
+Command A: python -m chonoi.soak --seed 7 --days 10 --out docs/proof/phase-4/soak.json
+Command A exit code: 0
+Command B: python -m chonoi.soak --seed 7 --days 10 --out docs/proof/phase-4/soak-replay.json
+Command B exit code: 0
+Gameplay field comparison (days, days_completed, crashes, results): identical
+Run A duration_s: 0.6661463000000367
+Run B duration_s: 0.7087588000003961
+Observed: days_completed=10, crashes=0, per-day earned=0, reputation=3.0, score=300
+Bot: docks at Gather start, does not control Quan, closes Shop immediately; no stock enters Quan, so earned remains zero.

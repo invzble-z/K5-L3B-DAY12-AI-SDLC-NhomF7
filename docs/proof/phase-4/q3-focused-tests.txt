@@ -1,0 +1,108 @@
+test_tc_q3_005_first_due_arrival_uses_elapsed_simulation_tick (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_005_first_due_arrival_uses_elapsed_simulation_tick)
+[PROPOSED] Arrival at first_customer_tick is emitted on that step. ... ok
+test_tc_q3_005_new_customer_keeps_full_patience_on_arrival_tick (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_005_new_customer_keeps_full_patience_on_arrival_tick)
+[PROPOSED] A customer spawned after countdown starts at its full configured patience. ... ok
+test_tc_q3_006_second_arrival_obeys_interval_across_two_tuned_tables (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_006_second_arrival_obeys_interval_across_two_tuned_tables)
+[PROPOSED] Scheduled arrivals use the configured interval and next free table. ... ok
+test_tc_q3_007_disabling_arrivals_does_not_disable_fixture_patience (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_007_disabling_arrivals_does_not_disable_fixture_patience) ... ok
+test_tc_q3_008_spawn_requires_the_full_recipe_in_available_stock (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_008_spawn_requires_the_full_recipe_in_available_stock)
+A partial multi-ingredient recipe cannot be selected or reserved. ... ok
+test_tc_q3_009_consuming_an_unrelated_rng_stream_does_not_change_customer (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_009_consuming_an_unrelated_rng_stream_does_not_change_customer)
+Named Streams keep unrelated random draws from shifting Q3 selection. ... ok
+test_tc_q3_010_same_seed_and_inputs_replay_the_same_session_rows (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_010_same_seed_and_inputs_replay_the_same_session_rows) ... ok
+test_tc_q3_017_expiry_before_serve_interaction_is_provisional (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_017_expiry_before_serve_interaction_is_provisional)
+[PROPOSED] Current step order expires waiting customers before serve interaction. ... ok
+test_tc_q3_019_expiry_on_last_time_tick_emits_left_and_end_once (tests.test_p1_q3.Q3ArrivalTests.test_tc_q3_019_expiry_on_last_time_tick_emits_left_and_end_once)
+[PROPOSED] Final-tick timeout and patience expiry each notify once on that tick. ... ok
+test_tc_q3_018_no_dish_queries_preserve_active_work (tests.test_p1_q3.Q3EndConditionTests.test_tc_q3_018_no_dish_queries_preserve_active_work)
+[PROPOSED] No order is possible when idle, but active work prevents idle status. ... ok
+test_tc_q3_001_missing_reserved_is_inferred_as_a_copy_of_menu_recipe (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_001_missing_reserved_is_inferred_as_a_copy_of_menu_recipe) ... ok
+test_tc_q3_001_tick_zero_hydrates_customer_and_table_mapping (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_001_tick_zero_hydrates_customer_and_table_mapping)
+A valid fixture is normalized before the first snapshot. ... ok
+test_tc_q3_002_existing_customer_ids_are_reserved_before_allocation (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_002_existing_customer_ids_are_reserved_before_allocation)
+Numeric ID ordering and allocator state include loaded customers. ... ok
+test_tc_q3_003_sessions_do_not_mutate_reused_scenario_or_menu (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_003_sessions_do_not_mutate_reused_scenario_or_menu)
+Nested reservation data is session-owned; restart can reuse input objects. ... ok
+test_tc_q3_004_ordered_customer_without_reserved_does_not_reserve_again (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_004_ordered_customer_without_reserved_does_not_reserve_again)
+[PROPOSED] Local ordered state means ingredients were consumed before hydration. ... ok
+test_tc_q3_004_q4_handoff_fixtures_hydrate_coherently (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_004_q4_handoff_fixtures_hydrate_coherently)
+[PROPOSED] Local waiting/cooking/eating fixture states hydrate coherently. ... ok
+test_tc_q3_020_invalid_overreservation_is_rejected_before_output (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_020_invalid_overreservation_is_rejected_before_output)
+The headless entry point returns the input error code without a partial JSONL. ... ok
+test_tc_q3_021_invalid_random_customers_type_is_rejected_before_output (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_021_invalid_random_customers_type_is_rejected_before_output) ... ok
+test_tc_q3_021_partial_recipe_reservation_is_rejected_before_output (tests.test_p1_q3.Q3HydrationTests.test_tc_q3_021_partial_recipe_reservation_is_rejected_before_output)
+A valid but incomplete reservation fails during hydration before JSONL creation. ... ok
+test_tc_q3_015_eating_customer_is_not_waiting_timeout_target (tests.test_p1_q3.Q3PatienceTests.test_tc_q3_015_eating_customer_is_not_waiting_timeout_target) ... ok
+test_tc_q3_015_waiting_expiry_notifies_and_removes_once (tests.test_p1_q3.Q3PatienceTests.test_tc_q3_015_waiting_expiry_notifies_and_removes_once)
+[PROPOSED] Waiting patience reaches zero, notifies once, and releases once. ... ok
+test_tc_q3_011_reservation_is_atomic_and_competes_for_one_recipe (tests.test_p1_q3.Q3ReservationTests.test_tc_q3_011_reservation_is_atomic_and_competes_for_one_recipe)
+[PROPOSED] One dish's whole recipe is reserved or none of it is. ... ok
+test_tc_q3_012_release_and_consume_are_idempotent_without_refund (tests.test_p1_q3.Q3ReservationTests.test_tc_q3_012_release_and_consume_are_idempotent_without_refund)
+[PROPOSED] A release frees availability; consume debits stock at most once. ... ok
+test_arrival_schedule_is_not_backlogged_after_no_dish (tests.test_p2_q3_no_dish.NoDishTests.test_arrival_schedule_is_not_backlogged_after_no_dish) ... ok
+test_empty_filter_blocks_cookable_stock_and_emits_no_dish (tests.test_p2_q3_no_dish.NoDishTests.test_empty_filter_blocks_cookable_stock_and_emits_no_dish) ... ok
+test_free_table_with_empty_stock_emits_one_no_dish_at_each_due_turn (tests.test_p2_q3_no_dish.NoDishTests.test_free_table_with_empty_stock_emits_one_no_dish_at_each_due_turn) ... ok
+test_full_tables_drop_due_turn_without_no_dish (tests.test_p2_q3_no_dish.NoDishTests.test_full_tables_drop_due_turn_without_no_dish) ... ok
+test_partial_recipe_and_empty_menu_filter_emit_no_dish (tests.test_p2_q3_no_dish.NoDishTests.test_partial_recipe_and_empty_menu_filter_emit_no_dish) ... ok
+test_single_and_multiple_filters_are_preserved (tests.test_p2_q3_no_dish.NoDishTests.test_single_and_multiple_filters_are_preserved) ... ok
+test_headless_day_one_reaches_end (tests.test_p2_q3_day_integration.Q3DayHeadlessIntegrationTests.test_headless_day_one_reaches_end) ... ok
+test_headless_day_three_replay_is_deterministic (tests.test_p2_q3_day_integration.Q3DayHeadlessIntegrationTests.test_headless_day_three_replay_is_deterministic) ... ok
+test_customer_leaving_releases_unconsumed_day_reservation_once (tests.test_p2_q3_day_integration.Q3DayIntegrationTests.test_customer_leaving_releases_unconsumed_day_reservation_once) ... ok
+test_day_level_reputation_is_passed_into_first_quan_shift (tests.test_p2_q3_day_integration.Q3DayIntegrationTests.test_day_level_reputation_is_passed_into_first_quan_shift) ... ok
+test_day_payment_updates_cumulative_money_and_earned_once (tests.test_p2_q3_day_integration.Q3DayIntegrationTests.test_day_payment_updates_cumulative_money_and_earned_once) ... ok
+test_day_plan_payload_and_filter_do_not_mutate_contract_tuning (tests.test_p2_q3_day_integration.Q3DayIntegrationTests.test_day_plan_payload_and_filter_do_not_mutate_contract_tuning) ... ok
+test_day_to_day_rebuild_resets_customer_clock_tables_and_shift_state (tests.test_p2_q3_day_integration.Q3DayIntegrationTests.test_day_to_day_rebuild_resets_customer_clock_tables_and_shift_state) ... ok
+test_empty_day_plan_does_not_spawn_customer_for_unplanned_dish (tests.test_p2_q3_day_integration.Q3DayIntegrationTests.test_empty_day_plan_does_not_spawn_customer_for_unplanned_dish) ... ok
+test_empty_day_plan_is_an_empty_quan_filter (tests.test_p2_q3_day_integration.Q3DayIntegrationTests.test_empty_day_plan_is_an_empty_quan_filter) ... ok
+test_gather_inventory_is_handed_to_quan_once_and_reserved (tests.test_p2_q3_day_integration.Q3DayIntegrationTests.test_gather_inventory_is_handed_to_quan_once_and_reserved) ... ok
+test_gather_to_day_order_consumes_recipe_exactly_once (tests.test_p2_q3_day_integration.Q3DayIntegrationTests.test_gather_to_day_order_consumes_recipe_exactly_once) ... ok
+test_manifest_mapping_and_list_plans_are_read_without_mutation (tests.test_p2_q3_day_integration.Q3DayIntegrationTests.test_manifest_mapping_and_list_plans_are_read_without_mutation) ... ok
+test_real_day_customer_schedule_uses_first_tick_and_interval_from_tuning (tests.test_p2_q3_day_integration.Q3DayIntegrationTests.test_real_day_customer_schedule_uses_first_tick_and_interval_from_tuning) ... ok
+test_reputation_earned_in_quan_survives_into_next_day (tests.test_p2_q3_day_integration.Q3DayIntegrationTests.test_reputation_earned_in_quan_survives_into_next_day) ... ok
+test_sim_tick_stays_still_while_paused (tests.test_p2_q3_day_integration.Q3DayIntegrationTests.test_sim_tick_stays_still_while_paused) ... ok
+test_consume_and_release_are_idempotent_for_physical_ids (tests.test_p3_q3_freshness.QuanFreshnessTests.test_consume_and_release_are_idempotent_for_physical_ids) ... ok
+test_duplicate_reserved_item_ids_are_rejected (tests.test_p3_q3_freshness.QuanFreshnessTests.test_duplicate_reserved_item_ids_are_rejected) ... ok
+test_failed_spoil_recovery_marks_order_unfulfillable_once_without_stock_loss (tests.test_p3_q3_freshness.QuanFreshnessTests.test_failed_spoil_recovery_marks_order_unfulfillable_once_without_stock_loss) ... ok
+test_freshness_uses_exact_quan_decay_and_is_clamped_at_zero (tests.test_p3_q3_freshness.QuanFreshnessTests.test_freshness_uses_exact_quan_decay_and_is_clamped_at_zero) ... ok
+test_missing_one_ingredient_never_reserves_a_partial_recipe (tests.test_p3_q3_freshness.QuanFreshnessTests.test_missing_one_ingredient_never_reserves_a_partial_recipe) ... ok
+test_multikind_reservation_is_atomic_and_never_overlaps_ids (tests.test_p3_q3_freshness.QuanFreshnessTests.test_multikind_reservation_is_atomic_and_never_overlaps_ids) ... ok
+test_reservation_picks_freshest_then_smallest_numeric_id (tests.test_p3_q3_freshness.QuanFreshnessTests.test_reservation_picks_freshest_then_smallest_numeric_id) ... ok
+test_same_seed_and_stock_replay_identically (tests.test_p3_q3_freshness.QuanFreshnessTests.test_same_seed_and_stock_replay_identically) ... ok
+test_spoiled_event_crosses_threshold_once_in_stable_id_order (tests.test_p3_q3_freshness.QuanFreshnessTests.test_spoiled_event_crosses_threshold_once_in_stable_id_order) ... ok
+test_spoiled_reserved_item_releases_then_re_reserves_once (tests.test_p3_q3_freshness.QuanFreshnessTests.test_spoiled_reserved_item_releases_then_re_reserves_once) ... ok
+test_day_handoff_individual_items_and_id_continuity (tests.test_p3_inventory.InventoryPhase3Tests.test_day_handoff_individual_items_and_id_continuity)
+AC-P3-08: Bàn giao kho cá th\u1ec3 gi\u1eefa các ngày và IdAllocator không \u0111\u1ee5ng \u0111\u1ed9. ... ok
+test_day_headless_smoke_two_days (tests.test_p3_inventory.InventoryPhase3Tests.test_day_headless_smoke_two_days)
+AC-P3-08: Headless --mode day --days 2 --ticks 600 ch\u1ea1y tr\u01a1n tru. ... ok
+test_item_class_initialization_and_access (tests.test_p3_inventory.InventoryPhase3Tests.test_item_class_initialization_and_access) ... ok
+test_item_rejects_invalid_values (tests.test_p3_inventory.InventoryPhase3Tests.test_item_rejects_invalid_values) ... ok
+test_merge_items_with_individual_items (tests.test_p3_inventory.InventoryPhase3Tests.test_merge_items_with_individual_items) ... ok
+test_read_inventory_v10_rejects_individual_inventory (tests.test_p3_inventory.InventoryPhase3Tests.test_read_inventory_v10_rejects_individual_inventory)
+Kho cá th\u1ec3 khi \u0111\u1ecdc v\u1edbi version 1.1 ph\u1ea3i báo BadInput. ... ok
+test_read_inventory_v12_rejects_count_inventory (tests.test_p3_inventory.InventoryPhase3Tests.test_read_inventory_v12_rejects_count_inventory)
+Kho \u0111\u1ebfm khi \u0111\u1ecdc v\u1edbi version 1.2 ph\u1ea3i báo BadInput. ... ok
+test_read_inventory_v12_validation (tests.test_p3_inventory.InventoryPhase3Tests.test_read_inventory_v12_validation) ... ok
+test_write_and_read_v12_roundtrip_preserves_threshold_30 (tests.test_p3_inventory.InventoryPhase3Tests.test_write_and_read_v12_roundtrip_preserves_threshold_30)
+Ghi r\u1ed3i \u0111\u1ecdc l\u1ea1i gi\u1eef \u0111úng giá tr\u1ecb \u1edf ng\u01b0\u1ee1ng 30 và s\u1eafp theo id. ... ok
+test_day_pause_freezes_physical_freshness_and_ticks (tests.test_p3_v13_integration.ContractV13InventoryTests.test_day_pause_freezes_physical_freshness_and_ticks) ... ok
+test_root_version_is_propagated_and_gather_to_file_to_quan_keeps_id_fresh (tests.test_p3_v13_integration.ContractV13InventoryTests.test_root_version_is_propagated_and_gather_to_file_to_quan_keeps_id_fresh) ... ok
+test_v13_rejects_count_files_and_count_scenario_stock (tests.test_p3_v13_integration.ContractV13InventoryTests.test_v13_rejects_count_files_and_count_scenario_stock) ... ok
+test_v13_scenario_checks_unique_reservation_ids_and_accepts_null_hand (tests.test_p3_v13_integration.ContractV13InventoryTests.test_v13_scenario_checks_unique_reservation_ids_and_accepts_null_hand) ... ok
+test_cooked_dish_serves_matching_waiter_and_releases_their_item_ids (tests.test_p2_q4_f1_reuse.OrphanDishReuseTests.test_cooked_dish_serves_matching_waiter_and_releases_their_item_ids) ... ok
+test_cli_rejects_non_integer_seed_and_invalid_days (tests.test_p4_soak.SoakTests.test_cli_rejects_non_integer_seed_and_invalid_days) ... usage: chonoi.soak [-h] --seed SEED --days DAYS --out OUT
+chonoi.soak: error: argument --seed: --seed ph\u1ea3i là s\u1ed1 nguyên
+usage: chonoi.soak [-h] --seed SEED --days DAYS --out OUT
+chonoi.soak: error: argument --days: --days ph\u1ea3i >= 1
+ok
+test_day_plan_event_repeats_d1_to_d5_for_days_six_to_ten (tests.test_p4_soak.SoakTests.test_day_plan_event_repeats_d1_to_d5_for_days_six_to_ten) ... ok
+test_one_day_uses_real_daysim_and_writes_schema (tests.test_p4_soak.SoakTests.test_one_day_uses_real_daysim_and_writes_schema) ... ok
+test_output_path_error_returns_nonzero (tests.test_p4_soak.SoakTests.test_output_path_error_returns_nonzero) ... l\u1ed7i ghi soak: [Errno 2] No such file or directory: 'missing-parent/soak.json'
+ok
+test_runtime_crash_is_counted_and_not_hidden (tests.test_p4_soak.SoakTests.test_runtime_crash_is_counted_and_not_hidden) ... ok
+test_soak_day_with_real_payment_preserves_money_and_reputation (tests.test_p4_soak.SoakTests.test_soak_day_with_real_payment_preserves_money_and_reputation) ... ok
+test_ten_day_replay_matches_gameplay_results (tests.test_p4_soak.SoakTests.test_ten_day_replay_matches_gameplay_results) ... ok
+
+----------------------------------------------------------------------
+Ran 75 tests in 1.191s
+
+OK

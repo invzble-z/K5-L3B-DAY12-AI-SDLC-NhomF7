@@ -1,4 +1,5 @@
 import json
+import math
 import unittest
 from pathlib import Path
 
@@ -30,6 +31,49 @@ class FishMotionTest(unittest.TestCase):
     def advance(self, session):
         session.step(InputState((0, 0), {}, set()))
         return session.snapshot()["fish"]
+
+    def ticket_session(self, **scenario):
+        path = Path(__file__).resolve().parents[1] / "game.contract.json"
+        tuning = json.loads(path.read_text(encoding="utf-8"))["tuning"]
+        gather = tuning["gather"]
+        gather.pop("fish_motion")
+        gather.update(
+            fish_initial=8, fish_speed=1.5, fish_turn_ticks=120, fish_max=12,
+            fish_spawn_ticks=360, fish_spawn_clearance=1,
+            fish_x=[10, 20, 30, 40, 50, 60, 70, 80], fish_depths=[5],
+            fish_spawn_x=[20, 40, 60, 80], fish_spawn_depths=[25],
+            fish_weights={"ca_linh": 40, "ca_loc": 30, "ca_keo": 30},
+        )
+        return Session("gather", tuning, scenario, seed=1)
+
+    def test_ticket_schedule_emits_spawn_events_and_caps_population(self):
+        session = self.ticket_session()
+        initial = session.snapshot()["fish"]
+        self.assertEqual(len(initial), 8)
+        self.assertEqual([fish["age_ticks"] for fish in initial], [0] * 8)
+        spawns = []
+        for _ in range(360 * 5):
+            events = session.step(InputState((0, 0), {}, set()))
+            spawns.extend(event for event in events if event["name"] == "fish_spawned")
+            for event in events:
+                if event["name"] == "fish_spawned":
+                    fish = session.snapshot()["fish"]
+                    spawned = fish[-1]
+                    self.assertEqual(spawned["age_ticks"], 0)
+                    self.assertEqual(event["data"], {key: spawned[key] for key in ("id", "kind", "pos")})
+                    self.assertTrue(all(math.dist(spawned["pos"], school["pos"]) > 1
+                                        for school in fish[:-1]))
+        self.assertEqual([event["tick"] for event in spawns], [360, 720, 1080, 1440])
+        self.assertEqual([event["data"]["id"] for event in spawns], ["F9", "F10", "F11", "F12"])
+        self.assertEqual(len(session.snapshot()["fish"]), 12)
+
+    def test_ticket_random_fish_false_preserves_static_fixture(self):
+        session = self.ticket_session(random_fish=False, fish=[
+            {"id": "F20", "kind": "ca_keo", "pos": [25, 10]},
+        ])
+        for _ in range(360):
+            fish = self.advance(session)
+        self.assertEqual([(school["id"], school["pos"]) for school in fish], [("F20", [25, 10])])
 
     def test_default_contract_fish_swim_at_configured_speed(self):
         path = Path(__file__).resolve().parents[1] / "game.contract.json"

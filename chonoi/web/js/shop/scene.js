@@ -51,7 +51,7 @@
       });
       if (!ids.length) text("(chưa có dữ liệu shop.upgrades trong game.contract.json)", w / 2, cy + 100, { size: 18, align: "center", color: COLOR.muted });
 
-      const stock = snap.stock || {}, left = Object.keys(stock).filter((k) => stock[k] > 0);
+      const stock = CN.inv.counts(snap.stock), left = Object.keys(stock);
       const sy = cy + ch + 50;
       text("Kho dư (bỏ sau Shop):", x0, sy, { size: 18, color: COLOR.muted });
       left.forEach((k, i) => { ui.icon(k, x0 + 220 + i * 80, sy - 6, 28); text("×" + stock[k], x0 + 240 + i * 80, sy, { size: 18, weight: "700" }); });

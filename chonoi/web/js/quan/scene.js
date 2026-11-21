@@ -243,7 +243,7 @@
         ui.ring(x, y, 1.02 * s, 1, COLOR.ok, 6);
         ui.dish(st.dish, x, y - 0.1 * s, 0.85 * s);
         const [bx, by] = ui.bubble(x, y - 1.0 * s, 86, 34);
-        text("Chín!", bx, by + 1, { size: 18, align: "center", base: "middle", color: "#2f6b2f", weight: "800" });
+        text("Chín!", bx, by + 1, { size: 18, align: "center", base: "middle", color: "#2f6b2f", weight: "800", noOutline: true });
       }
     });
   }
@@ -288,6 +288,7 @@
   function drawTables(v, snap) {
     const { meta, s } = v, t = CN.now();
     const patMax = (meta.patience_s || 60) * 60;
+    const alerts = [];   // nhãn "Sắp giận!" vẽ sau cùng để bàn/biển số vẽ sau không đè lên
     const byTable = {};
     (snap.customers || []).forEach((c) => { if (c.table_id) byTable[c.table_id] = c; });
     (snap.tables || []).forEach((tb, ti) => {
@@ -320,14 +321,16 @@
         ui.dish(dishOf(c), x - 0.3 * s, y + 0.05 * s, 0.7 * s);
         drawSmoke(x - 0.3 * s, y - 0.1 * s, s * 0.6, t, 3, true, ti * 0.3);
         const [bx, by] = ui.bubble(x, y - 1 * s, 96, 34);
-        text("Đang ăn", bx, by + 1, { size: 18, align: "center", base: "middle", color: "#2f6b2f", weight: "700" });
+        text("Đang ăn", bx, by + 1, { size: 18, align: "center", base: "middle", color: "#2f6b2f", weight: "700", noOutline: true });
         return;
       }
       const [bx, by] = ui.bubble(x, y - 1 * s, 76, 62);                                                 // bong bóng order + kiên nhẫn
       ui.dish(dishOf(c), bx, by - 7, 36);
       const left = patienceLeft(c);
       if (left !== undefined) patienceBar(bx, by + 17, 60, left / patMax, t);
+      if (left !== undefined && left / patMax < 0.25) alerts.push([bx, by - 52]);   // TICKET-04
     });
+    alerts.forEach(([ax, ay]) => ui.alert(ax, ay, "Sắp giận!", COLOR.danger, { size: 18 }));
   }
 
   // ---------------- Út Sen (nhìn từ trên): khăn rằn quấn đầu, áo bà ba, bưng món ----------------

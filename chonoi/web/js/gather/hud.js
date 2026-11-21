@@ -7,18 +7,14 @@
   const { ctx, text, bar, ui, COLOR, fmtTime } = CN;
   const PURPLE = "#a26bff";
 
-  function counts(list) {
-    const c = {};
-    (list || []).forEach((k) => (c[k] = (c[k] || 0) + 1));
-    return c;
-  }
+  const counts = (list) => CN.inv.counts(list);
   const isUnder = (snap, p) => (p.at_surface === undefined ? p.pos && p.pos[1] > ((snap.meta || {}).surface_depth ?? 0.5) : !p.at_surface);
 
   function monsterNear(snap, p) {
     if (!p.pos || p.pos[1] < 10) return false;                       // Cá Sấu chỉ đuổi khi người chơi ở d ≥ 10
     const species = ((snap.meta || {}).monsters || {}).species || {};
     return (snap.monsters || []).some((m) => {
-      const r = (species[m.kind] || {}).detect_radius || 10;
+      const r = (species[m.species ?? m.kind] || {}).detect_radius || 10;
       return m.state === "chase" || Math.hypot(m.pos[0] - p.pos[0], m.pos[1] - p.pos[1]) <= r;
     });
   }
@@ -32,13 +28,17 @@
       g.addColorStop(0, "rgba(239,83,80,0)"); g.addColorStop(1, `rgba(239,83,80,${a.toFixed(3)})`);
       ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
     }
+    // 3 cảnh báo TICKET-04 (2 cái ở cảnh lặn): chữ + biểu tượng qua ui.alert, viền màn hình chỉ là phụ.
+    let ay = 104;
     if (monsterNear(snap, p)) {
-      ctx.strokeStyle = PURPLE; ctx.globalAlpha = 0.55 + 0.35 * Math.sin(t * 8); ctx.lineWidth = 10;
+      ctx.strokeStyle = PURPLE; ctx.globalAlpha = CN.contrast.on ? 1 : 0.55 + 0.35 * Math.sin(t * 8); ctx.lineWidth = CN.contrast.on ? 14 : 10;
       ctx.strokeRect(5, 5, w - 10, h - 10); ctx.globalAlpha = 1;
-      text("Thủy quái!", w / 2, 100, { size: 28, align: "center", color: PURPLE, weight: "800" });
+      ui.alert(w / 2, ay, "Thủy quái! Tránh xa", CN.contrast.on ? "#bf5af2" : PURPLE, { size: 26 });
+      ay += 52;
     }
-    if (p.oxygen_max_ticks && p.oxygen_ticks === 0 && isUnder(snap, p)) {
-      text("Hết hơi! Lên mặt nước!", w / 2, h / 2 - 80, { size: 30, align: "center", color: COLOR.danger, weight: "800" });
+    if (p.oxygen_max_ticks && isUnder(snap, p)) {
+      if (p.oxygen_ticks === 0) ui.alert(w / 2, h / 2 - 80, "Hết hơi! Lên mặt nước!", COLOR.danger, { size: 30 });
+      else if (lowO2) ui.alert(w / 2, ay, "Sắp hết hơi! Lên thở", COLOR.danger, { size: 24 });
     }
   }
 
@@ -106,8 +106,31 @@
   }
 
   // Giỏ theo loại: icon + số lượng, tổng n/sức chứa; viền vàng ở món nhặt sau cùng (bị rơi trước khi trúng quái).
+  // v1.2 (AC-P3-09): mỗi cá thể một ô theo thứ tự nhặt: icon, số độ tươi (floor), thanh màu; < ngưỡng ghi "ươn".
+  function freshHold(w, h, snap) {
+    const items = snap.hold, cap = snap.hold_capacity, n = items.length, full = n >= cap, below = CN.inv.spoiledBelow(snap);
+    const sw = 56, gap = 4, maxSlots = Math.max(1, Math.floor((w - 140) / (sw + gap)));
+    const shown = items.slice(-maxSlots), pw = 96 + Math.max(1, shown.length) * (sw + gap), ph = 86, y0 = h - ph - 10;
+    ui.panel(10, y0, pw, ph, full ? { stroke: COLOR.danger, lineWidth: 2 } : {});
+    text("Giỏ", 24, y0 + 32, { size: 20, weight: "800" });
+    text(n + "/" + cap, 24, y0 + 58, { size: 18, weight: "700", color: full ? COLOR.danger : COLOR.muted });
+    const spoiled = items.filter((it) => it.fresh < below).length;
+    if (spoiled) text(spoiled + " ươn", 24, y0 + 78, { size: 18, weight: "800", color: COLOR.danger });
+    shown.forEach((it, i) => {
+      const x = 96 + i * (sw + gap), bad = it.fresh < below, col = CN.freshColor(it.fresh, below);
+      ui.panel(x, y0 + 6, sw, ph - 12, { fill: bad ? "rgba(239,83,80,.22)" : "rgba(255,255,255,.06)", stroke: bad ? COLOR.danger : COLOR.line, lineWidth: bad ? 2 : 1, r: 8 });
+      ctx.globalAlpha = bad ? 0.55 : 1;
+      ui.icon(it.kind, x + sw / 2, y0 + 26, 30);
+      ctx.globalAlpha = 1;
+      text(bad ? "ươn" : String(Math.floor(it.fresh)), x + sw / 2, y0 + 58, { size: 18, align: "center", weight: "800", color: bad ? COLOR.danger : COLOR.text });
+      bar(x + 6, y0 + 66, sw - 12, 6, it.fresh / 100, col);
+    });
+    if (full) text("Giỏ đầy!", 10 + pw + 12, y0 + 44, { size: 20, color: COLOR.danger, weight: "800" });
+  }
+
   function hold(w, h, snap) {
     if (!snap.hold || !snap.hold_capacity) return;
+    if (CN.inv.hasFresh(snap.hold)) return freshHold(w, h, snap);
     const cap = snap.hold_capacity, n = snap.hold.length, full = n >= cap, c = counts(snap.hold), kinds = Object.keys(c);
     const pw = Math.max(200, 130 + kinds.length * 86), y0 = h - 74;
     ui.panel(10, y0, pw, 64, full ? { stroke: COLOR.danger, lineWidth: 2 } : {});
@@ -141,6 +164,6 @@
     needList(w, minimap(w, snap), snap);
     hold(w, h, snap);
     returnWarning(w, h, snap);
-    text("Esc tạm dừng", w - 14, h - 16, { size: 18, align: "right", color: COLOR.muted });
+    text("Esc tạm dừng · H tương phản cao", w - 14, h - 16, { size: 18, align: "right", color: COLOR.muted });
   };
 })(window.CN);

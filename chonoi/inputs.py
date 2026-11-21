@@ -11,19 +11,21 @@ import math
 from .errors import BadInput
 
 BUTTONS_V10 = ("interact", "catch")  # v1.0; các nút khác có từ phiên bản sau
+BUTTONS_V11 = ("interact", "catch", "pause", "shop_done", "attack", "photo")
 
 
 class InputState:
-    def __init__(self, move, held, edges):
+    def __init__(self, move, held, edges, buy=None):
         self.move = move
         self.held = held
         self._edges = edges
+        self.buy = buy
 
     def pressed(self, name: str) -> bool:
         return name in self._edges
 
 
-def load_frames(path, buttons=BUTTONS_V10):
+def load_frames(path, buttons=BUTTONS_V10, allow_buy=False):
     if path is None:
         return []
     try:
@@ -36,6 +38,8 @@ def load_frames(path, buttons=BUTTONS_V10):
     last = -1
     frames = []
     allowed = {"tick", "move", *buttons}
+    if allow_buy:
+        allowed.add("buy")
     for i, fr in enumerate(data["frames"]):
         if not isinstance(fr, dict):
             raise BadInput(f"frame {i} không phải object")
@@ -57,6 +61,9 @@ def load_frames(path, buttons=BUTTONS_V10):
         for b in buttons:
             if b in fr and not isinstance(fr[b], bool):
                 raise BadInput(f"frame {i}: {b} phải là boolean")
+        if "buy" in fr and fr["buy"] is not None:
+            if not isinstance(fr["buy"], str):
+                raise BadInput(f"frame {i}: buy phải là chuỗi hoặc null")
         frames.append(fr)
     return frames
 
@@ -79,16 +86,18 @@ class InputPlayer:
     def advance(self, k: int) -> InputState:
         """Đọc input có tick == k. Trả trạng thái dùng cho bước k."""
         edges = set()
+        buy = None
         fr = self._frames.get(k)
         if fr:
             if "move" in fr:
                 self._move = normalize(fr["move"])
+            buy = fr.get("buy")
             for b in self._buttons:
                 if b in fr:
                     if fr[b] and not self._held[b]:
                         edges.add(b)
                     self._held[b] = fr[b]
-        return InputState(self._move, dict(self._held), edges)
+        return InputState(self._move, dict(self._held), edges, buy=buy)
 
 
 class LiveInputs:
@@ -102,10 +111,13 @@ class LiveInputs:
         self._move = (0.0, 0.0)
         self._held = {b: False for b in buttons}
         self._pending = set()
+        self._next_buy = None
 
-    def set(self, move=None, **buttons):
+    def set(self, move=None, buy=None, **buttons):
         if move is not None:
             self._move = normalize(move)
+        if buy is not None:
+            self._next_buy = buy
         for b, v in buttons.items():
             if b not in self._held:
                 continue
@@ -115,4 +127,6 @@ class LiveInputs:
 
     def advance(self) -> InputState:
         edges, self._pending = self._pending, set()
-        return InputState(self._move, dict(self._held), edges)
+        buy = self._next_buy
+        self._next_buy = None
+        return InputState(self._move, dict(self._held), edges, buy=buy)

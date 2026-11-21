@@ -1,0 +1,13 @@
+test_base_price_and_tip_single_item (tests.test_p3_quan_price.QuanPhase3PriceTests.test_base_price_and_tip_single_item)
+1 nguyên liệu fresh=80: base_price = floor(60 * 80 / 100) = 48. Tip = floor(48 * 0.2) = 9. ... ok
+test_base_price_multi_item_and_cook_started_items_sorting (tests.test_p3_quan_price.QuanPhase3PriceTests.test_base_price_multi_item_and_cook_started_items_sorting)
+2 nguyên liệu fresh=73 và 64: trung bình = 68.5. base_price = floor(90 * 68.5 / 100) = 61. ... ok
+test_ready_dish_does_not_decay_freshness (tests.test_p3_quan_price.QuanPhase3PriceTests.test_ready_dish_does_not_decay_freshness)
+Món đã nấu chín trên bếp không bị hao thêm độ tươi theo thời gian. ... ok
+test_tip_zero_when_patience_ratio_below_half (tests.test_p3_quan_price.QuanPhase3PriceTests.test_tip_zero_when_patience_ratio_below_half)
+Khách được phục vụ khi kiên nhẫn thấp (< 50%) -> tip = 0, tiền chỉ bằng base_price. ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.008s
+
+OK

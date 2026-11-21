@@ -1,0 +1,6 @@
+Merge origin/main b85711d into Quoosc 45cde60
+Baseline: verify_phase1.py --no-proof: 100 tests, 9/9 steps, exit 0.
+After merge before test adjustment: 108 tests, 1 failure; fixture added 3 dishes to the 6-dish contract, while the test assumed a 3-dish contract.
+After adjustment: verify_phase1.py --no-proof: 108 tests, 9/9 steps, exit 0; gather and quan deterministic, invalid input exit 2.
+PYTHONPATH=tests;. python -m unittest test_p2_q3 test_p2_quoc test_p2_quan_lat3b -v: 19 tests, exit 0.
+python .agents/skills/python-fact-grounded-coding/scripts/check_rules.py: exit 0, 0 errors; numeric literals flagged for review.

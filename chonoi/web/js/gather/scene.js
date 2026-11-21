@@ -306,7 +306,7 @@
   const lastX = {}, facing = {};
   function monsterNear(v, m, p) {
     if (!p || !p.pos || p.pos[1] < 10) return false;                // Cá Sấu chỉ đuổi khi người chơi ở d ≥ 10
-    const r = (((v.meta.monsters || {}).species || {})[m.kind] || {}).detect_radius || 10;
+    const r = (((v.meta.monsters || {}).species || {})[m.species ?? m.kind] || {}).detect_radius || 10;
     return m.state === "chase" || Math.hypot(m.pos[0] - p.pos[0], m.pos[1] - p.pos[1]) <= r;
   }
 
@@ -338,7 +338,7 @@
       ctx.save(); ctx.translate(x, y); ctx.scale(facing[m.id] || 1, 1);
       ctx.globalAlpha = m.state === "recoil" ? 0.55 : 1;
       const sway = Math.sin(t * (chase ? 9 : 4)) * 0.35 * s;
-      if (m.kind === "ran") {                                           // rắn (mở rộng): thân uốn sóng
+      if ((m.species ?? m.kind) === "ran") {                                           // rắn (mở rộng): thân uốn sóng
         ctx.strokeStyle = near ? PURPLE : "#6b5a2a"; ctx.lineWidth = 0.5 * s + (near ? 3 : 0); ctx.lineCap = "round";
         ctx.beginPath(); for (let i = 0; i <= 12; i++) { const u = -2.5 * s + i * 0.4 * s, yy = Math.sin(t * 6 + i * 0.8) * 0.3 * s; if (i) ctx.lineTo(u, yy); else ctx.moveTo(u, yy); } ctx.stroke();
         ctx.strokeStyle = "#8a7436"; ctx.lineWidth = 0.42 * s; ctx.stroke(); ctx.lineCap = "butt";
@@ -421,7 +421,7 @@
     const fill = Math.min(1, (snap.hold_count ?? held.length) / cap);
     ctx.fillStyle = "rgba(120,90,50,.35)"; CN.rrect(-0.55 * s, -0.78 * s, 0.85 * s, 0.5 * s, 0.12 * s); ctx.fill();
     held.slice(0, 6).forEach((k, i) => {
-      ctx.fillStyle = CN.kc(k);
+      ctx.fillStyle = CN.kc(CN.kindOf(k));
       ctx.beginPath(); ctx.arc(-0.42 * s + (i % 3) * 0.28 * s, -0.4 * s - Math.floor(i / 3) * 0.17 * s * fill * 2, 0.1 * s, 0, TAU); ctx.fill();
     });
     ctx.strokeStyle = "#a07a45"; ctx.lineWidth = 1; ctx.beginPath();

@@ -1,0 +1,5 @@
+﻿Branch: Quoosc
+Direct owner logic: QuanSim with real Item instances and fixture IDs
+Command: python -m unittest tests.test_p3_q3_freshness tests.test_p3_quan_price tests.test_p3_inventory tests.test_p3_gather -v
+Focused Phase 3/Q3 exit code: 0
+Cases cover exact decay/clamp, stable spoiled events, freshness threshold, freshest-first/tie ID, multi-kind atomicity, no overlap, spoiled reservation recovery/failure, idempotent consume/release, price compatibility, inventory adapter and gather.

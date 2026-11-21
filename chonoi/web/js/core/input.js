@@ -2,7 +2,7 @@
 /*
  * Bàn phím. Màn hình (menu, intro, pause) được ưu tiên xử lý phím trước; còn lại là phím chơi.
  * WASD/mũi tên di chuyển · E interact · Space catch · Q attack · F photo (mở rộng) · Esc/P pause · R chơi lại
- * Shop: 1..n mua nâng cấp · Enter đóng Shop · ` bật/tắt nhật ký sự kiện.
+ * Shop: 1..n mua nâng cấp · Enter đóng Shop · H tương phản cao · ` bật/tắt nhật ký sự kiện.
  */
 (function (CN) {
   const down = new Set();
@@ -26,6 +26,7 @@
     if (k === " " || k.startsWith("arrow")) e.preventDefault();
     if (e.repeat) return;
     if (k === "`") { CN.debug = !CN.debug; return; }
+    if (k === "h") { CN.contrast.toggle(); return; }   // tương phản cao, dùng được ở mọi màn hình
     if (CN.screens && CN.screens.onKey(k)) return;
     const snap = CN.state.snap;
     if (MOVE_KEYS[k]) down.add(MOVE_KEYS[k]);

@@ -11,6 +11,7 @@
     const [w, h] = CN.fit();
     ctx.fillStyle = COLOR.bg; ctx.fillRect(0, 0, w, h);
     const { snap, offline, mock } = CN.state;
+    CN.bench.frame(!!snap);   // ?bench=1: đo thời gian khung (core/bench.js), không làm gì khi tắt
     if (!snap) {
       const msg = offline ? (mock ? "Không đọc được file mock…" : "Không kết nối được máy chủ…") : "Đang tải…";
       text(msg, w / 2, h / 2, { align: "center", size: 20 });
@@ -31,6 +32,7 @@
     CN.fx.draw();
     CN.overlay.draw(w, h, snap);
     CN.screens.drawOverlay(w, h, snap);
+    CN.bench.draw(w);
   }
   requestAnimationFrame(frame);
 })(window.CN);
